@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Stats</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            margin: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 250px;
+            border-collapse: collapse;
+            background-color: black;
+            color: white;
+            font-family: Arial;
+            float: left;
+            margin-right: 20px;
+            border-radius: 10px;
+        }
+
+            td {
+            padding: 10px;
+            border: 3px solid white;
+            border radius: 10px;
+        }
+
+        th {
+            background-color: white;
+            color: black;
+            text-align: center;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .collapse-button {
+            cursor: pointer;
+            color: black;
+            text-decoration: underline;
+            margin-bottom: 10px;
+        }
+
+        .collapsed:after {
+            content: "Collapse";
+        }
+
+        .expanded:after {
+            content: "Expand";
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .button-container .button-rent {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            min-width: 100px;
+            border: 2px solid white;
+            border-radius: 10px;
+            height: 200px;
+        }
+
+        @media screen and (max-width: 500px) {
+            .button-container {
+                justify-content: center;
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.collapse-button').click(function() {
+                $(this).toggleClass('collapsed');
+                var tableDetails = $('.table-details');
+                tableDetails.toggle();
+                if (tableDetails.is(':visible')) {
+                    $(this).removeClass('expanded').addClass('collapsed');
+                } else {
+                    $(this).removeClass('collapsed').addClass('expanded');
+                }
+            });
+
+            $('.button').click(function() {
+                // Handle button click event here
+                // Add your logic for button actions
+            });
+        });
+    </script>
+</head>
+<body>
+<h1> View the predictions below for your property details </h1>
+<table>
+    <thead>
+    <tr>
+        <th colspan="2">
+            Your Property Details
+            <span class="collapse-button collapsed"></span>
+        </th>
+    </tr>
+    </thead>
+    <tbody class="table-details">
+    <tr>
+        <td>Purchase Price</td>
+        <td th:text="${house.purchasePrice}"></td>
+    </tr>
+    <tr>
+        <td>Mortgage Amount</td>
+        <td th:text="${house.mortgageAmount}"></span></td>
+    </tr>
+    <tr>
+        <td>Down Payment</td>
+        <td th:text="${house.downPayment}"></span></td>
+    </tr>
+    <tr>
+        <td>Interest Rate</td>
+        <td th:text="${house.interestRate}"></span></td>
+    </tr>
+    <tr>
+        <td>Loan Term</td>
+        <td th:text="${house.loanTerm}"></span></td>
+    </tr>
+    <tr>
+        <td>Income</td>
+        <td th:text="${house.income}"></span></td>
+    </tr>
+    <tr>
+        <td>Postcode</td>
+        <td th:text="${house.postcode}"></span></td>
+    </tr>
+    <tr>
+        <td>Property Type</td>
+        <td th:text="${house.propertyType}"></span></td>
+    </tr>
+    <tr>
+        <td>Internal Area</td>
+        <td th:text="${house.internalArea}"></span></td>
+    </tr>
+    <tr>
+        <td>Bedrooms</td>
+        <td th:text="${house.bedrooms}"></span></td>
+    </tr>
+    <tr>
+        <td>Outdoor Space</td>
+        <td th:text="${house.outdoorSpace}"></span></td>
+    </tr>
+    <tr>
+        <td>Construction Date</td>
+        <td th:text="${house.constructionDate}"></span></td>
+    </tr>
+    <tr>
+        <td>Finish Quality</td>
+        <td th:text="${house.finishQuality}"></span></td>
+    </tr>
+    <tr>
+        <td>Off Street Parking Spots</td>
+        <td th:text="${house.offStreetParking}"></span></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="button-container">
+    <button class="button-rent">
+        <span class="button-title">Recommended Rent:</span>
+        <span class="button-body" th:text="${house.rentRecommend}"></span>
+    <!-- Add more buttons as needed -->
+    </button>
+</div>
+
+</body>
+</html>

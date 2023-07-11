@@ -1,0 +1,248 @@
+package com.example.demo;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+
+@Entity
+@Table(name = "house")
+public class House {
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int houseId;
+    @NotEmpty
+    @Column(name = "purchasePrice")
+    private String purchasePrice;
+    @NotEmpty
+    @Column(name = "downPayment")
+    private String downPayment;
+    @NotEmpty
+    @Column(name = "mortgageAmount")
+    private String mortgageAmount;
+    @NotEmpty
+    @Column(name = "interestRate")
+    private String interestRate;
+    @NotEmpty
+    @Column(name = "loanTerm")
+    private String loanTerm;
+    @NotEmpty
+    @Column(name = "income")
+    private String income;
+    @NotEmpty
+    @Column(name="internalArea")
+    private String internalArea;
+    @NotEmpty
+    @Column(name = "postcode")
+    private String postcode;
+    @NotEmpty
+    @Column(name="offStreetParking")
+    private String offStreetParking;
+    @Column(name= "outdoorSpace")
+    @Enumerated(EnumType.STRING)
+    private OutdoorSpace outdoorSpace;
+    @NotEmpty
+    @Column(name = "bedrooms")
+    private String bedrooms;
+    @Column(name= "bathrooms")
+    private String bathrooms;
+    @Column(name = "propertyType")
+    @Enumerated(EnumType.STRING)
+    private PropertyType propertyType;
+    @Column(name= "finishQuality")
+    @Enumerated(EnumType.STRING)
+    private FinishQuality finishQuality;
+    @Column(name= "constructionDate")
+    @Enumerated(EnumType.STRING)
+    private ConstructionDate constructionDate;
+    @Column(name="rentRecommend")
+    private String rentRecommend;
+
+    public int getHouseId() {
+        return houseId;
+    }
+
+    public void setHouseId(int houseId) {
+        this.houseId = houseId;
+    }
+
+    public String getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    public void setPurchasePrice(String purchasePrice) {
+        this.purchasePrice = purchasePrice;
+    }
+
+    public String getDownPayment() {
+        return downPayment;
+    }
+
+    public void setDownPayment(String downPayment) {
+        this.downPayment = downPayment;
+    }
+
+    public String getMortgageAmount() {
+        return mortgageAmount;
+    }
+
+    public void setMortgageAmount(String mortgageAmount) {
+        this.mortgageAmount = mortgageAmount;
+    }
+
+    public String getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(String interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public String getLoanTerm() {
+        return loanTerm;
+    }
+
+    public void setLoanTerm(String loanTerm) {
+        this.loanTerm = loanTerm;
+    }
+
+    public String getIncome() {
+        return income;
+    }
+
+    public void setIncome(String income) {
+        this.income = income;
+    }
+
+    public String getPostcode() {
+        return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
+    }
+
+    public String getBedrooms() {
+        return bedrooms;
+    }
+
+    public void setBedrooms(String bedrooms) {
+        this.bedrooms = bedrooms;
+    }
+
+    public PropertyType getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(PropertyType propertyType) {
+        this.propertyType = propertyType;
+    }
+
+    public enum PropertyType {
+        flat,
+        terraced_house,
+        detached_house,
+        semidetached_house
+    }
+
+    public enum ConstructionDate {
+        pre_1914,
+        ninteen_fourteen_to_two_thousand,
+        two_thousand_onwards
+    }
+
+//    public enum ConstructionDate {
+//        PRE_1914("Pre_1914"),
+//        BETWEEN_1914_2000("1914_2000"),
+//        ONWARD_2000("2000_onwards");
+//
+//        private final String value;
+//
+//        ConstructionDate(String value) {
+//            this.value = value;
+//        }
+//
+//        public String getValue() {
+//            return value;
+//        }
+//
+//        public static ConstructionDate fromValue(String value) {
+//            for (ConstructionDate date : ConstructionDate.values()) {
+//                if (date.getValue().equalsIgnoreCase(value)) {
+//                    return date;
+//                }
+//            }
+//            throw new IllegalArgumentException("Invalid construction date: " + value);
+//        }
+//    }
+
+    public enum FinishQuality {
+        very_high,
+        high,
+        average,
+        below_average,
+        unmodernised
+    }
+
+    public enum OutdoorSpace {
+        none,
+        balcony_terrace,
+        garden,
+        garden_very_large
+    }
+
+    public String getRentRecommend() {
+        return rentRecommend;
+    }
+
+    public void setRentRecommend(String rentRecommend) {
+        this.rentRecommend = rentRecommend;
+    }
+
+    public OutdoorSpace getOutdoorSpace() {
+        return outdoorSpace;
+    }
+
+    public void setOutdoorSpace(OutdoorSpace outdoorSpace) {
+        this.outdoorSpace = outdoorSpace;
+    }
+
+    public FinishQuality getFinishQuality() {
+        return finishQuality;
+    }
+
+    public void setFinishQuality(FinishQuality finishQuality) {
+        this.finishQuality = finishQuality;
+    }
+
+    public ConstructionDate getConstructionDate() {
+        return constructionDate;
+    }
+
+    public void setConstructionDate(ConstructionDate constructionDate) {
+        this.constructionDate = constructionDate;
+    }
+
+    public String getOffStreetParking() {
+        return offStreetParking;
+    }
+
+    public void setOffStreetParking(String offStreetParking) {
+        this.offStreetParking = offStreetParking;
+    }
+
+    public String getInternalArea() {
+        return internalArea;
+    }
+
+    public void setInternalArea(String internalArea) {
+        this.internalArea = internalArea;
+    }
+
+    public String getBathrooms() {
+        return bathrooms;
+    }
+
+    public void setBathrooms(String bathrooms) {
+        this.bathrooms = bathrooms;
+    }
+}
