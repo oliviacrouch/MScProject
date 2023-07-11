@@ -38,12 +38,26 @@ public class AnalyseController {
         System.out.println(house.getFinishQuality());
         System.out.println(house.getInternalArea());
 
+        String constructionDateApiFormat;
+        if (house.getConstructionDate() == House.ConstructionDate.pre_1914){
+            constructionDateApiFormat = "pre_1914";
+        } else if (house.getConstructionDate() == House.ConstructionDate.
+                nineteen_fourteen_to_two_thousand) {
+            constructionDateApiFormat = "1914_2000";
+        }
+        else if (house.getConstructionDate() == House.ConstructionDate.two_thousand_onwards) {
+            constructionDateApiFormat = "2000_onwards";
+        }
+        else {
+            constructionDateApiFormat = "Format not recognised";
+        }
+
         System.out.println("The API request is starting.");
         String apiURL = "https://api.propertydata.co.uk/valuation-rent?key=YZSEDKSVC4"
                 + "&postcode=" + house.getPostcode()
                 + "&internal_area=" + house.getInternalArea()
                 + "&property_type=" + house.getPropertyType()
-                + "&construction_date=" + house.getConstructionDate()
+                + "&construction_date=" + constructionDateApiFormat
                 + "&bedrooms=" + house.getBedrooms()
                 + "&bathrooms=" + house.getBathrooms()
                 + "&finish_quality=" + house.getFinishQuality()

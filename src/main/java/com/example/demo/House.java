@@ -144,34 +144,36 @@ public class House {
         semidetached_house
     }
 
+//    correct one
     public enum ConstructionDate {
         pre_1914,
-        ninteen_fourteen_to_two_thousand,
-        two_thousand_onwards
+        nineteen_fourteen_to_two_thousand,
+        two_thousand_onwards;
     }
 
 //    public enum ConstructionDate {
-//        PRE_1914("Pre_1914"),
-//        BETWEEN_1914_2000("1914_2000"),
-//        ONWARD_2000("2000_onwards");
+//        pre_1914("Pre_1914"),
+//        between_1914_2000("1914_2000"),
+//        onward_2000("2000_onwards");
 //
-//        private final String value;
+//        private final String apiFormat;
 //
-//        ConstructionDate(String value) {
-//            this.value = value;
+//        ConstructionDate(String apiFormat) {
+//            this.apiFormat = apiFormat;
 //        }
 //
-//        public String getValue() {
-//            return value;
+//        public String getApiFormat() {
+//            return apiFormat;
 //        }
-//
-//        public static ConstructionDate fromValue(String value) {
+//    }
+
+//        public static ConstructionDate fromApiFormat(String apiFormat) {
 //            for (ConstructionDate date : ConstructionDate.values()) {
-//                if (date.getValue().equalsIgnoreCase(value)) {
+//                if (date..equalsIgnoreCase(apiFormat)) {
 //                    return date;
 //                }
 //            }
-//            throw new IllegalArgumentException("Invalid construction date: " + value);
+//            throw new IllegalArgumentException("Invalid construction date: " + apiFormat);
 //        }
 //    }
 
