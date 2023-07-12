@@ -67,10 +67,13 @@ public class AnalyseController {
         System.out.println(apiURL);
         //perform API request and retrieve response.
         String apiResponse = houseCalculationService.performApiRequest(apiURL);
-        house.setRentRecommend(apiResponse);
         System.out.println("This is the api response:" + apiResponse);
-        //double cashFlow houseCalculationService.calcCashFlow();
-
+//        handle API response to extract relevant info in service class
+        house.setRentRecommend(houseCalculationService.handleApiResponse(apiResponse));
+        String handledApiResponse = houseCalculationService.handleApiResponse(apiResponse);
+        System.out.println("This is the handled API response: " + handledApiResponse);
+//        System.out.println("This is the api response:" + apiResponse);
+//        double cashFlow houseCalculationService.calcCashFlow();
         houseDetailRepo.save(house);
         //double debtToIncomeRatio = houseCalculationService.calcDebtToIncome();
         //double monthlyMortgagePayment = houseCalculationService.calcMonthlyMortgage();

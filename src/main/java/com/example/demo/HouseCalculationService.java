@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -36,4 +38,18 @@ public class HouseCalculationService {
         return null;
     }
 
+    public String handleApiResponse(String apiResponse) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            // parses apiResponse string from string to json node
+            JsonNode jsonNode = objectMapper.readTree(apiResponse);
+
+            JsonNode resultNode = jsonNode.get("result");
+            String gbpPerWeek = String.valueOf(resultNode.get("estimate"));
+            return gbpPerWeek;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
