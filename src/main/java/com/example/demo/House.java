@@ -56,6 +56,8 @@ public class House {
     private ConstructionDate constructionDate;
     @Column(name="rentRecommend")
     private String rentRecommend;
+    @Column(name="expenses")
+    private String expenses;
 
     public int getHouseId() {
         return houseId;
@@ -246,5 +248,13 @@ public class House {
 
     public void setBathrooms(String bathrooms) {
         this.bathrooms = bathrooms;
+    }
+
+    public String getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(String expenses) {
+        this.expenses = expenses;
     }
 }

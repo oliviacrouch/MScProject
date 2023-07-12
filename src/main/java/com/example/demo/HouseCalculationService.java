@@ -52,4 +52,72 @@ public class HouseCalculationService {
         }
         return null;
     }
+
+    // expenses will vary between construction date and finish quality because
+    // this will affect insurance - so as a safe estimate this must be accounted
+    public double calcExpenses(String weeklyRent, House house) {
+        int weeklyRentInt = Integer.parseInt(weeklyRent);
+        double baseExpenses = weeklyRentInt * 0.5;
+        if(house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
+        house.getFinishQuality() == House.FinishQuality.unmodernised) {
+            double totalExpenses = baseExpenses * 1.3;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
+        house.getFinishQuality() == House.FinishQuality.below_average) {
+            double totalExpenses = baseExpenses * 1.25;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
+                house.getFinishQuality() == House.FinishQuality.average) {
+            double totalExpenses = baseExpenses * 1.2;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
+                house.getFinishQuality() == House.FinishQuality.high) {
+            double totalExpenses = baseExpenses * 1.175;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
+                house.getFinishQuality() == House.FinishQuality.very_high) {
+            double totalExpenses = baseExpenses * 1.15;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
+        && house.getFinishQuality() == House.FinishQuality.unmodernised) {
+            double totalExpenses =  baseExpenses * 1.25;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
+        && house.getFinishQuality() == House.FinishQuality.below_average){
+            double totalExpenses = baseExpenses * 1.2;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
+                && house.getFinishQuality() == House.FinishQuality.average){
+            double totalExpenses = baseExpenses * 1.15;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
+                && house.getFinishQuality() == House.FinishQuality.high){
+            double totalExpenses = baseExpenses * 1.15;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
+                && house.getFinishQuality() == House.FinishQuality.very_high){
+            double totalExpenses = baseExpenses * 1.10;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.two_thousand_onwards
+                && house.getFinishQuality() == House.FinishQuality.unmodernised){
+            double totalExpenses = baseExpenses * 1.2;
+            return totalExpenses;
+        }
+        if (house.getConstructionDate() == House.ConstructionDate.two_thousand_onwards
+                && house.getFinishQuality() == House.FinishQuality.below_average){
+            double totalExpenses = baseExpenses * 1.1;
+            return totalExpenses;
+        }
+        return baseExpenses;
+    }
 }
