@@ -75,7 +75,6 @@ public class AnalyseController {
 //        house.setRentRecommend(houseCalculationService.handleApiResponse(apiResponse));
         String handledApiResponse = houseCalculationService.handleApiResponse(apiResponse);
         System.out.println("This is the handled API response: " + handledApiResponse);
-
         // weight the expenses calculated in the service class according to the age of the house and
         // the finish quality within
         double expenses = houseCalculationService.calcExpenses(monthlyRent, house);

@@ -130,7 +130,7 @@ public class HouseCalculationService {
     public double monthlyMortgagePayment(String totalMortgage) {
         // annual interest rate
         // principal starting balance of loan
-        // term
+        // erm
         // number of monthly payments / year
     }
 }
