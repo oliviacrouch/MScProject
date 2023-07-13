@@ -57,7 +57,7 @@
             margin-top: 20px;
         }
 
-        .button-container .button-rent .button-expenses {
+        .button-container .button-rent {
             flex: 1;
             margin: 5px;
             padding: 10px;
@@ -170,12 +170,12 @@
 
 <div class="button-container">
     <button class="button-rent">
-        <span class="button-title">Recommended Rent:</span>
+        <span class="button-title">Recommended Rent P/W:</span>
         <span class="button-body" th:text="${house.rentRecommend}"></span>
     </button>
 
     <button class="button-expenses">
-        <span class ="button-title">Estimated expenses:</span>
+        <span class ="button-title">Estimated expenses P/W:</span>
         <span class="button-body" th:text="${house.expenses}"></span>
     </button>
 

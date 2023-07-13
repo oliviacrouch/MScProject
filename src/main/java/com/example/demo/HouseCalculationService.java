@@ -53,11 +53,17 @@ public class HouseCalculationService {
         return null;
     }
 
+    public double calcMonthlyRent(String weeklyRent) {
+        int weeklyRentInt = Integer.parseInt(weeklyRent);
+        double monthlyRent = weeklyRentInt * 4.34524;
+        return monthlyRent;
+    }
+
     // expenses will vary between construction date and finish quality because
     // this will affect insurance - so as a safe estimate this must be accounted
-    public double calcExpenses(String weeklyRent, House house) {
-        int weeklyRentInt = Integer.parseInt(weeklyRent);
-        double baseExpenses = weeklyRentInt * 0.5;
+    public double calcExpenses(double monthlyRent, House house) {
+        //int weeklyRentInt = Integer.parseInt(weeklyRent);
+        double baseExpenses = monthlyRent * 0.5;
         if(house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
         house.getFinishQuality() == House.FinishQuality.unmodernised) {
             double totalExpenses = baseExpenses * 1.3;
@@ -119,5 +125,12 @@ public class HouseCalculationService {
             return totalExpenses;
         }
         return baseExpenses;
+    }
+
+    public double monthlyMortgagePayment(String totalMortgage) {
+        // annual interest rate
+        // principal starting balance of loan
+        // term
+        // number of monthly payments / year
     }
 }

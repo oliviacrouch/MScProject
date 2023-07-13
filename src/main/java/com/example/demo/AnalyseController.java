@@ -69,13 +69,16 @@ public class AnalyseController {
         String apiResponse = houseCalculationService.performApiRequest(apiURL);
         System.out.println("This is the api response:" + apiResponse);
 //        handle API response to extract relevant info in service class
-        house.setRentRecommend(houseCalculationService.handleApiResponse(apiResponse));
+        String weeklyRent = houseCalculationService.handleApiResponse(apiResponse);
+        double monthlyRent = houseCalculationService.calcMonthlyRent(weeklyRent);
+        house.setRentRecommend(String.valueOf(monthlyRent));
+//        house.setRentRecommend(houseCalculationService.handleApiResponse(apiResponse));
         String handledApiResponse = houseCalculationService.handleApiResponse(apiResponse);
         System.out.println("This is the handled API response: " + handledApiResponse);
 
         // weight the expenses calculated in the service class according to the age of the house and
         // the finish quality within
-        double expenses = houseCalculationService.calcExpenses(handledApiResponse, house);
+        double expenses = houseCalculationService.calcExpenses(monthlyRent, house);
         house.setExpenses(String.valueOf(expenses));
         houseDetailRepo.save(house);
 
