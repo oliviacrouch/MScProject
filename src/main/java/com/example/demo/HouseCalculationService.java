@@ -8,11 +8,12 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.text.DecimalFormat;
 
 @Service
 public class HouseCalculationService {
 
-    public String performApiRequest(String apiURL) {
+    public String performRentApiRequest(String apiURL) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiURL))
@@ -54,9 +55,10 @@ public class HouseCalculationService {
     }
 
     public double calcMonthlyRent(String weeklyRent) {
+        DecimalFormat df = new DecimalFormat("0.00");
         int weeklyRentInt = Integer.parseInt(weeklyRent);
         double monthlyRent = weeklyRentInt * 4.34524;
-        return monthlyRent;
+        return Double.parseDouble(df.format(monthlyRent));
     }
 
     // expenses will vary between construction date and finish quality because
@@ -127,10 +129,23 @@ public class HouseCalculationService {
         return baseExpenses;
     }
 
-    public double monthlyMortgagePayment(String totalMortgage) {
-        // annual interest rate
-        // principal starting balance of loan
-        // erm
-        // number of monthly payments / year
+    public double calcMonthlyMortgagePayment(String totalMortgage, String interestRate, String loanTerm) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        int totalMortgageInt = Integer.parseInt(totalMortgage);
+        double interestRateDouble = Double.parseDouble(interestRate);
+        double interestRateDecimal = interestRateDouble/100;
+        double monthlyInterestRate = interestRateDecimal/12;
+        int loanTermInt = Integer.parseInt(loanTerm);
+        int loanTermMonths = loanTermInt * 12;
+        double monthlyMortgagePayment = (totalMortgageInt*monthlyInterestRate)/(1 -
+                Math.pow(1 + monthlyInterestRate, -loanTermMonths));
+
+        return Double.parseDouble(df.format(monthlyMortgagePayment));
     }
+
+    // api for demand in area - Days on market imply how hot the market
+    // is in this area. and how long the house is likely to stay on the market for.
+//    public String performDemandApiRequest(String ApiURL) {
+//
+//    }
 }

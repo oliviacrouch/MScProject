@@ -170,15 +170,19 @@
 
 <div class="button-container">
     <button class="button-rent">
-        <span class="button-title">Recommended Rent P/W:</span>
+        <span class="button-title">Recommended Rent PCM:</span>
         <span class="button-body" th:text="${house.rentRecommend}"></span>
     </button>
 
     <button class="button-expenses">
-        <span class ="button-title">Estimated expenses P/W:</span>
+        <span class ="button-title">Estimated expenses PCM:</span>
         <span class="button-body" th:text="${house.expenses}"></span>
     </button>
 
+    <button class="button-mortgageMonthly">
+        <span class ="button-title">Monthly mortgage payment:</span>
+        <span class="button-body" th:text="${house.monthlyMortgagePayment}"></span>
+    </button>
 </div>
 
 </body>

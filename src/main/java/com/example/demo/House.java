@@ -58,6 +58,8 @@ public class House {
     private String rentRecommend;
     @Column(name="expenses")
     private String expenses;
+    @Column(name="monthlyMortgagePayment")
+    private String monthlyMortgagePayment;
 
     public int getHouseId() {
         return houseId;
@@ -256,5 +258,13 @@ public class House {
 
     public void setExpenses(String expenses) {
         this.expenses = expenses;
+    }
+
+    public String getMonthlyMortgagePayment() {
+        return monthlyMortgagePayment;
+    }
+
+    public void setMonthlyMortgagePayment(String monthlyMortgagePayment) {
+        this.monthlyMortgagePayment = monthlyMortgagePayment;
     }
 }
