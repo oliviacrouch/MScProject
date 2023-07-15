@@ -183,6 +183,31 @@
         <span class ="button-title">Monthly mortgage payment:</span>
         <span class="button-body" th:text="${house.monthlyMortgagePayment}"></span>
     </button>
+
+    <button class="button-daysOnMarket">
+        <span class ="button-title">Average days on market in the area:</span>
+        <span class="button-body" th:text="${house.daysOnMarket}"></span>
+    </button>
+
+    <button class="button-demandRating">
+        <span class ="button-title">Area demand rating:</span>
+        <span class="button-body" th:text="${house.demandRating}"></span>
+    </button>
+
+    <button class="button-grossYield">
+        <span class ="button-title">Gross yield:</span>
+        <span class="button-body" th:text="${house.grossYield + '%'}"></span>
+    </button>
+
+    <button class="button-netYield">
+        <span class ="button-title">Net Yield:</span>
+        <span class="button-body" th:text="${house.netYield + '%'}"></span>
+    </button>
+
+    <button class="button-vacancyRate">
+        <span class ="button-title">Vacancy Rate:</span>
+        <span class="button-body" th:text="${house.vacancyRate}"></span>
+    </button>
 </div>
 
 </body>

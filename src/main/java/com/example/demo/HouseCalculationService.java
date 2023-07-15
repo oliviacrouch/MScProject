@@ -1,19 +1,18 @@
 package com.example.demo;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 @Service
 public class HouseCalculationService {
 
-    public String performRentApiRequest(String apiURL) {
+    public String performApiRequest(String apiURL) {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiURL))
@@ -65,7 +64,7 @@ public class HouseCalculationService {
     // this will affect insurance - so as a safe estimate this must be accounted
     public double calcExpenses(double monthlyRent, House house) {
         //int weeklyRentInt = Integer.parseInt(weeklyRent);
-        double baseExpenses = monthlyRent * 0.5;
+        double baseExpenses = monthlyRent * 0.4;
         if(house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
         house.getFinishQuality() == House.FinishQuality.unmodernised) {
             double totalExpenses = baseExpenses * 1.3;
@@ -145,7 +144,62 @@ public class HouseCalculationService {
 
     // api for demand in area - Days on market imply how hot the market
     // is in this area. and how long the house is likely to stay on the market for.
-//    public String performDemandApiRequest(String ApiURL) {
-//
-//    }
+    public String handleDaysOnMarketApiRequest(String apiURL) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // parses apiResponse string from string to json node
+            JsonNode jsonNode = objectMapper.readTree(apiURL);
+            String daysOnMarket = String.valueOf(jsonNode.get("days_on_market"));
+            return daysOnMarket;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // return before expenses
+    public String calcGrossYield(double monthlyRentalIncome, double purchasePrice) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        double annualGrossIncome = monthlyRentalIncome * 12;
+        double grossYield = (annualGrossIncome / purchasePrice) * 100;
+        return df.format(grossYield);
+    }
+
+    // net rental is return after expenses
+    public String calcNetYield (double monthlyRentalIncome, double monthlyMortgagePayment,
+                                double expenses, double purchasePrice)  {
+        DecimalFormat df = new DecimalFormat("0.00");
+        double annualGrossIncome = monthlyRentalIncome * 12;
+        double allExpenses = (monthlyMortgagePayment*12)+(expenses*12);
+        double rentalMinusExpenses = annualGrossIncome - allExpenses;
+        double netYield = (rentalMinusExpenses / purchasePrice) * 100;
+        return df.format(netYield);
+    }
+
+    public String handleDemandRatingApiRequest(String apiURL){
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            // parses apiResponse string from string to json node
+            JsonNode jsonNode = objectMapper.readTree(apiURL);
+            String demandRating = String.valueOf(jsonNode.get("demand_rating"));
+            String demandRatingNoQuotes = demandRating.replaceAll("\"", "");
+            return demandRatingNoQuotes;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String calcVacancyRate(House house) {
+        if (Objects.equals(house.getDemandRating(), "Balanced market")){
+            return "Around 3%";
+        }
+        if (Objects.equals(house.getDemandRating(), "Seller's market")){
+            return "Less than 2%";
+        }
+        if (Objects.equals(house.getDemandRating(), "Buyer's market")) {
+            return "Greater than 5%";
+        }
+        return null;
+    }
 }

@@ -60,6 +60,16 @@ public class House {
     private String expenses;
     @Column(name="monthlyMortgagePayment")
     private String monthlyMortgagePayment;
+    @Column(name = "daysOnMarket")
+    private String daysOnMarket;
+    @Column(name = "grossYield")
+    private String grossYield;
+    @Column(name = "netYield")
+    private String netYield;
+    @Column(name= "demandRating")
+    private String demandRating;
+    @Column(name = "vacancyRate")
+    private String vacancyRate;
 
     public int getHouseId() {
         return houseId;
@@ -155,32 +165,6 @@ public class House {
         two_thousand_onwards;
     }
 
-//    public enum ConstructionDate {
-//        pre_1914("Pre_1914"),
-//        between_1914_2000("1914_2000"),
-//        onward_2000("2000_onwards");
-//
-//        private final String apiFormat;
-//
-//        ConstructionDate(String apiFormat) {
-//            this.apiFormat = apiFormat;
-//        }
-//
-//        public String getApiFormat() {
-//            return apiFormat;
-//        }
-//    }
-
-//        public static ConstructionDate fromApiFormat(String apiFormat) {
-//            for (ConstructionDate date : ConstructionDate.values()) {
-//                if (date..equalsIgnoreCase(apiFormat)) {
-//                    return date;
-//                }
-//            }
-//            throw new IllegalArgumentException("Invalid construction date: " + apiFormat);
-//        }
-//    }
-
     public enum FinishQuality {
         very_high,
         high,
@@ -266,5 +250,45 @@ public class House {
 
     public void setMonthlyMortgagePayment(String monthlyMortgagePayment) {
         this.monthlyMortgagePayment = monthlyMortgagePayment;
+    }
+
+    public String getDaysOnMarket() {
+        return daysOnMarket;
+    }
+
+    public void setDaysOnMarket(String daysOnMarket) {
+        this.daysOnMarket = daysOnMarket;
+    }
+
+    public String getGrossYield() {
+        return grossYield;
+    }
+
+    public void setGrossYield(String grossYield) {
+        this.grossYield = grossYield;
+    }
+
+    public String getNetYield() {
+        return netYield;
+    }
+
+    public void setNetYield(String netYield) {
+        this.netYield = netYield;
+    }
+
+    public String getDemandRating() {
+        return demandRating;
+    }
+
+    public void setDemandRating(String demandRating) {
+        this.demandRating = demandRating;
+    }
+
+    public String getVacancyRate() {
+        return vacancyRate;
+    }
+
+    public void setVacancyRate(String vacancyRate) {
+        this.vacancyRate = vacancyRate;
     }
 }
