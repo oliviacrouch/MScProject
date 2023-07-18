@@ -70,6 +70,8 @@ public class House {
     private String demandRating;
     @Column(name = "vacancyRate")
     private String vacancyRate;
+    @Column(name = "cashFlow")
+    private String cashFlow;
 
     public int getHouseId() {
         return houseId;
@@ -290,5 +292,13 @@ public class House {
 
     public void setVacancyRate(String vacancyRate) {
         this.vacancyRate = vacancyRate;
+    }
+
+    public String getCashFlow() {
+        return cashFlow;
+    }
+
+    public void setCashFlow(String cashFlow) {
+        this.cashFlow = cashFlow;
     }
 }

@@ -123,6 +123,10 @@ public class AnalyseController {
         // calculate vacancy rate based off demand rating
         String vacancyRate = houseCalculationService.calcVacancyRate(house);
         house.setVacancyRate(vacancyRate);
+        // calculate cash flow
+        String cashFlow = houseCalculationService.calcNetCashFlow(monthlyRent, monthlyMortgagePayment,
+                vacancyRate, expenses);
+        house.setCashFlow(cashFlow);
         // save new details
         houseDetailRepo.save(house);
 

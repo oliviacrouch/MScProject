@@ -206,7 +206,12 @@
 
     <button class="button-vacancyRate">
         <span class ="button-title">Vacancy Rate:</span>
-        <span class="button-body" th:text="${house.vacancyRate}"></span>
+        <span class="button-body" th:text="${'Around ' + house.vacancyRate}"></span>
+    </button>
+
+    <button class="button-cashFlow">
+        <span class ="button-title">Net cash flow per month:</span>
+        <span class="button-body" th:text="${house.cashFlow}"></span>
     </button>
 </div>
 

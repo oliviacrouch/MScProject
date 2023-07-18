@@ -192,14 +192,28 @@ public class HouseCalculationService {
 
     public String calcVacancyRate(House house) {
         if (Objects.equals(house.getDemandRating(), "Balanced market")){
-            return "Around 3%";
+            return "3%";
         }
         if (Objects.equals(house.getDemandRating(), "Seller's market")){
-            return "Less than 2%";
+            return "2%";
         }
         if (Objects.equals(house.getDemandRating(), "Buyer's market")) {
-            return "Greater than 5%";
+            return "5%";
         }
         return null;
+    }
+    public String calcNetCashFlow(double monthlyRent, double monthlyMortgagePayment,
+                               String vacancyRate, double expenses) {
+        // calc gross rental income
+        double grossRentalIncome = monthlyRent * 12;
+        // handle vacancy rate string
+        String vacancyRate1 = vacancyRate.replaceAll("%", "");
+        double vacancyRateDouble = Double.parseDouble(vacancyRate1) / 100;
+        // calc effective rental income
+        double effectiveRentalIncome = grossRentalIncome * (1 - vacancyRateDouble);
+        // yearly cashflow
+        double cashFlow = effectiveRentalIncome - (expenses * 12) - (monthlyMortgagePayment * 12);
+        // return monthly cashflow
+        return String.valueOf(cashFlow / 12);
     }
 }
