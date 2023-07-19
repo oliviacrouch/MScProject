@@ -72,6 +72,8 @@ public class House {
     private String vacancyRate;
     @Column(name = "cashFlow")
     private String cashFlow;
+    @Column(name = "investmentRating")
+    private String investmentRating;
 
     public int getHouseId() {
         return houseId;
@@ -300,5 +302,13 @@ public class House {
 
     public void setCashFlow(String cashFlow) {
         this.cashFlow = cashFlow;
+    }
+
+    public String getInvestmentRating() {
+        return investmentRating;
+    }
+
+    public void setInvestmentRating(String investmentRating) {
+        this.investmentRating = investmentRating;
     }
 }

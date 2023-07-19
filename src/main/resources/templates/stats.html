@@ -11,21 +11,27 @@
             font-family: Arial, sans-serif;
         }
 
+        .white-box {
+            border: 3px solid white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .centered-text {
+            text-align: center;
+        }
+
         table {
             width: 250px;
             border-collapse: collapse;
-            background-color: black;
-            color: white;
-            font-family: Arial;
-            float: left;
-            margin-right: 20px;
-            border-radius: 10px;
+            margin: 0 auto;
         }
 
-            td {
+        td {
             padding: 10px;
             border: 3px solid white;
-            border radius: 10px;
         }
 
         th {
@@ -33,7 +39,6 @@
             color: black;
             text-align: center;
             position: relative;
-            border-radius: 10px;
         }
 
         .collapse-button {
@@ -52,34 +57,49 @@
         }
 
         .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    justify-content: space-between; /* Distribute buttons with equal spacing */
+}
 
-        .button-container .button-rent {
-            flex: 1;
-            margin: 5px;
-            padding: 10px;
-            background-color: black;
-            color: white;
-            text-align: center;
-            min-width: 75px;
-            border: 2px solid white;
-            border-radius: 10px;
-            height: 200px;
-        }
+.button-container .white-box {
+    flex: 1 0 30%; /* flex-grow: 1; flex-basis: 30% */
+    margin: 5px;
+    background-color: black;
+    color: white;
+    min-width: 75px;
+    border: 2px solid white;
+    border-radius: 10px;
+    height: 200px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
-        @media screen and (max-width: 500px) {
-            .button-container {
-                justify-content: center;
-            }
-        }
+.button-title {
+    font-weight: bold;
+    margin-bottom: 20px;
+    }
+
+@media screen and (max-width: 500px) {
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        align-items: center; /* Center buttons vertically on small screens */
+    }
+
+    .button-container .white-box {
+        flex: 1 0 100%; /* Full width on small screens */
+    }
+}
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.collapse-button').click(function() {
+        $(document).ready(function () {
+            $('.collapse-button').click(function () {
                 $(this).toggleClass('collapsed');
                 var tableDetails = $('.table-details');
                 tableDetails.toggle();
@@ -90,7 +110,7 @@
                 }
             });
 
-            $('.button').click(function() {
+            $('.button').click(function () {
                 // Handle button click event here
                 // Add your logic for button actions
             });
@@ -99,6 +119,7 @@
 </head>
 <body>
 <h1> View the predictions below for your property details </h1>
+<button class="calculate-button" onclick="window.location.href = 'calculating';">Calculate Investment Score</button>
 <table>
     <thead>
     <tr>
@@ -169,49 +190,49 @@
 </table>
 
 <div class="button-container">
-    <button class="button-rent">
+    <button class="white-box button-rent">
         <span class="button-title">Recommended Rent PCM:</span>
-        <span class="button-body" th:text="${house.rentRecommend}"></span>
+        <span class="button-body" th:text="${'£' + house.rentRecommend}"></span>
     </button>
 
-    <button class="button-expenses">
+    <button class="white-box button-expenses">
         <span class ="button-title">Estimated expenses PCM:</span>
-        <span class="button-body" th:text="${house.expenses}"></span>
+        <span class="button-body" th:text="${'£' + house.expenses}"></span>
     </button>
 
-    <button class="button-mortgageMonthly">
+    <button class="white-box button-mortgageMonthly">
         <span class ="button-title">Monthly mortgage payment:</span>
-        <span class="button-body" th:text="${house.monthlyMortgagePayment}"></span>
+        <span class="button-body" th:text="${'£' + house.monthlyMortgagePayment}"></span>
     </button>
 
-    <button class="button-daysOnMarket">
+    <button class="white-box button-daysOnMarket">
         <span class ="button-title">Average days on market in the area:</span>
         <span class="button-body" th:text="${house.daysOnMarket}"></span>
     </button>
 
-    <button class="button-demandRating">
+    <button class="white-box button-demandRating">
         <span class ="button-title">Area demand rating:</span>
         <span class="button-body" th:text="${house.demandRating}"></span>
     </button>
 
-    <button class="button-grossYield">
+    <button class="white-box button-grossYield">
         <span class ="button-title">Gross yield:</span>
         <span class="button-body" th:text="${house.grossYield + '%'}"></span>
     </button>
 
-    <button class="button-netYield">
+    <button class="white-box button-netYield">
         <span class ="button-title">Net Yield:</span>
         <span class="button-body" th:text="${house.netYield + '%'}"></span>
     </button>
 
-    <button class="button-vacancyRate">
+    <button class="white-box button-vacancyRate">
         <span class ="button-title">Vacancy Rate:</span>
         <span class="button-body" th:text="${'Around ' + house.vacancyRate}"></span>
     </button>
 
-    <button class="button-cashFlow">
+    <button class="white-box button-cashFlow">
         <span class ="button-title">Net cash flow per month:</span>
-        <span class="button-body" th:text="${house.cashFlow}"></span>
+        <span class="button-body" th:text="${'£' + house.cashFlow}"></span>
     </button>
 </div>
 

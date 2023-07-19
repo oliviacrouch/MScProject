@@ -63,69 +63,70 @@ public class HouseCalculationService {
     // expenses will vary between construction date and finish quality because
     // this will affect insurance - so as a safe estimate this must be accounted
     public double calcExpenses(double monthlyRent, House house) {
+        DecimalFormat df = new DecimalFormat("0.00");
         //int weeklyRentInt = Integer.parseInt(weeklyRent);
         double baseExpenses = monthlyRent * 0.4;
         if(house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
         house.getFinishQuality() == House.FinishQuality.unmodernised) {
             double totalExpenses = baseExpenses * 1.3;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
         house.getFinishQuality() == House.FinishQuality.below_average) {
             double totalExpenses = baseExpenses * 1.25;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
                 house.getFinishQuality() == House.FinishQuality.average) {
             double totalExpenses = baseExpenses * 1.2;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
                 house.getFinishQuality() == House.FinishQuality.high) {
             double totalExpenses = baseExpenses * 1.175;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.pre_1914 &&
                 house.getFinishQuality() == House.FinishQuality.very_high) {
             double totalExpenses = baseExpenses * 1.15;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
         && house.getFinishQuality() == House.FinishQuality.unmodernised) {
             double totalExpenses =  baseExpenses * 1.25;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
         && house.getFinishQuality() == House.FinishQuality.below_average){
             double totalExpenses = baseExpenses * 1.2;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
                 && house.getFinishQuality() == House.FinishQuality.average){
             double totalExpenses = baseExpenses * 1.15;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
                 && house.getFinishQuality() == House.FinishQuality.high){
             double totalExpenses = baseExpenses * 1.15;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.nineteen_fourteen_to_two_thousand
                 && house.getFinishQuality() == House.FinishQuality.very_high){
             double totalExpenses = baseExpenses * 1.10;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.two_thousand_onwards
                 && house.getFinishQuality() == House.FinishQuality.unmodernised){
             double totalExpenses = baseExpenses * 1.2;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
         if (house.getConstructionDate() == House.ConstructionDate.two_thousand_onwards
                 && house.getFinishQuality() == House.FinishQuality.below_average){
             double totalExpenses = baseExpenses * 1.1;
-            return totalExpenses;
+            return Double.parseDouble(df.format(totalExpenses));
         }
-        return baseExpenses;
+        return Double.parseDouble(df.format(baseExpenses));
     }
 
     public double calcMonthlyMortgagePayment(String totalMortgage, String interestRate, String loanTerm) {
@@ -204,6 +205,7 @@ public class HouseCalculationService {
     }
     public String calcNetCashFlow(double monthlyRent, double monthlyMortgagePayment,
                                String vacancyRate, double expenses) {
+        DecimalFormat df = new DecimalFormat("0.00");
         // calc gross rental income
         double grossRentalIncome = monthlyRent * 12;
         // handle vacancy rate string
@@ -214,6 +216,6 @@ public class HouseCalculationService {
         // yearly cashflow
         double cashFlow = effectiveRentalIncome - (expenses * 12) - (monthlyMortgagePayment * 12);
         // return monthly cashflow
-        return String.valueOf(cashFlow / 12);
+        return String.valueOf(df.format(cashFlow / 12));
     }
 }
