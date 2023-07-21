@@ -218,4 +218,50 @@ public class HouseCalculationService {
         // return monthly cashflow
         return String.valueOf(df.format(cashFlow / 12));
     }
+
+    public String calculateInvestmentRating(String purchasePrice, String netYield,
+                                            String demandRating, String cashFlow) {
+        // must justify these selections in write-up.
+        // outline weightings for each statistic based on their importance (out of 1)
+        // Define the minimum and maximum possible values for each parameter
+        double minPurchasePrice = 50000; // Set the minimum value for purchase price
+        double maxPurchasePrice = 5000000; // Set the maximum value for purchase price
+        double minNetYield = -2; // Set the minimum value for net yield
+        double maxNetYield = 5; // Set the maximum value for net yield
+        double minDemandRating = 1; // Set the minimum value for demand rating
+        double maxDemandRating = 10; // Set the maximum value for demand rating
+        double minCashFlow = -500; // Set the minimum value for cash flow
+        double maxCashFlow = 5000; // Set the maximum value for cash flow
+
+        // Parse input values to doubles
+        double purchasePriceDouble = Double.parseDouble(purchasePrice);
+        double netYieldDouble = Double.parseDouble(netYield);
+        double cashFlowDouble = Double.parseDouble(cashFlow);
+
+        // Normalize the values using min-max normalization
+        double normalizedPurchasePrice = (purchasePriceDouble - minPurchasePrice) / (maxPurchasePrice - minPurchasePrice);
+        double normalizedNetYield = (netYieldDouble - minNetYield) / (maxNetYield - minNetYield);
+        double normalizedCashFlow = (cashFlowDouble - minCashFlow) / (maxCashFlow - minCashFlow);
+        double normalizedDemandRating = (maxDemandRating - minDemandRating) / (maxDemandRating - minDemandRating); // No normalization required for demand rating as it's already within the desired range
+
+        // Define weightings for each parameter (out of 1)
+        double purchasePriceWeight = 0.2;
+        double demandRatingWeight = 0.2;
+        double netCashFlowWeight = 0.4;
+        double netYieldWeight = 0.2;
+
+        // Calculate rating based on weighted averages
+        double investmentRatingValue = (purchasePriceWeight * normalizedPurchasePrice) +
+                (demandRatingWeight * normalizedDemandRating) +
+                (netCashFlowWeight * normalizedCashFlow) +
+                (netYieldWeight * normalizedNetYield);
+
+        // Scale the rating to the desired range (1 to 10)
+        int investmentRating = (int) Math.round((investmentRatingValue * 9) + 1);
+
+        // Ensure the rating is within the desired range
+        investmentRating = Math.min(Math.max(investmentRating, 1), 10);
+
+        return String.valueOf(investmentRating);
+    }
 }

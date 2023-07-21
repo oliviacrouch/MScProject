@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +24,7 @@ public class AnalyseController {
     }
 
     @PostMapping("/process-form")
-    public String houseRegistration(@ModelAttribute House house){
+    public String houseRegistration(@ModelAttribute House house, HttpSession httpSession){
         System.out.println(house.toString());
         // validate entries into the database
         System.out.println(house.getPurchasePrice());
@@ -127,10 +129,22 @@ public class AnalyseController {
         String cashFlow = houseCalculationService.calcNetCashFlow(monthlyRent, monthlyMortgagePayment,
                 vacancyRate, expenses);
         house.setCashFlow(cashFlow);
+        // calculate score for the show-results html page
+        String investmentRating = houseCalculationService.calculateInvestmentRating(house.getPurchasePrice(), netYield, demandRating,
+                cashFlow);
+        house.setInvestmentRating(investmentRating);
+        System.out.println("This is the investment rating: " + investmentRating);
         // save new details
         houseDetailRepo.save(house);
-
+        httpSession.setAttribute("investmentRating", investmentRating);
         return "stats";
+    }
+
+    @GetMapping("/process-score")
+    public String showResults(Model model, HttpSession httpSession) {
+        String investmentRating = (String) httpSession.getAttribute("investmentRating");
+        model.addAttribute("investmentRating", investmentRating);
+        return "investmentRating";
     }
 }
 
