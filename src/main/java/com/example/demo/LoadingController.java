@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CalculatingController {
+public class LoadingController {
 
     @GetMapping("/calculating")
     public String calculating() {
-        return "calculating";
+        return "loading";
     }
 
 }
