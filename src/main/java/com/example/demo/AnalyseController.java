@@ -136,14 +136,33 @@ public class AnalyseController {
         System.out.println("This is the investment rating: " + investmentRating);
         // save new details
         houseDetailRepo.save(house);
+        // carry forward these to the next HTTP page so an analysis of them can be
+        // performed to better inform the user's understanding of the investment rating
         httpSession.setAttribute("investmentRating", investmentRating);
+        httpSession.setAttribute("cashFlow", cashFlow);
+        httpSession.setAttribute("purchasePrice", house.getPurchasePrice());
+        httpSession.setAttribute("vacancyRate", vacancyRate);
+        httpSession.setAttribute("netYield", netYield);
         return "stats";
     }
 
     @GetMapping("/process-score")
     public String showResults(Model model, HttpSession httpSession) {
         String investmentRating = (String) httpSession.getAttribute("investmentRating");
+        String cashFlow = (String) httpSession.getAttribute("cashFlow");
+        String purchasePrice = (String) httpSession.getAttribute("purchasePrice");
+        String vacancyRate = (String) httpSession.getAttribute("vacancyRate");
+        //String netYield = (String) httpSession.getAttribute("netYield");
         model.addAttribute("investmentRating", investmentRating);
+        model.addAttribute("cashFlow", cashFlow);
+        model.addAttribute("vacancyRate", vacancyRate);
+        model.addAttribute("purchasePrice", purchasePrice);
+
+        String ratingAnalysis =houseCalculationService.produceRatingAnalysis(investmentRating, cashFlow, vacancyRate,
+                purchasePrice);
+
+        // then can display this in the HTML using this reference? (I think):
+        model.addAttribute("ratingAnalysis", ratingAnalysis);
         return "investmentRating";
     }
 }
