@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class AnalyseController {
+public class HouseCalculationController {
     // autowired relation tool injects the dependency to all
     // access to functionality of other classes.
     @Autowired
-    private HouseDetailRepository houseDetailRepo;
+    private HouseCalculationRepository houseDetailRepo;
 
     @Autowired
     private HouseCalculationService houseCalculationService;
@@ -135,12 +135,13 @@ public class AnalyseController {
         house.setInvestmentRating(investmentRating);
         System.out.println("This is the investment rating: " + investmentRating);
         // save new details
-        houseDetailRepo.save(house);
+        //houseDetailRepo.save(house);
+        House savedHouse = houseCalculationService.saveHouse(house);
         // carry forward these to the next HTTP page so an analysis of them can be
         // performed to better inform the user's understanding of the investment rating
         httpSession.setAttribute("investmentRating", investmentRating);
         httpSession.setAttribute("cashFlow", cashFlow);
-        httpSession.setAttribute("purchasePrice", house.getPurchasePrice());
+        httpSession.setAttribute("purchasePrice", savedHouse.getPurchasePrice());
         httpSession.setAttribute("vacancyRate", vacancyRate);
         httpSession.setAttribute("netYield", netYield);
         return "stats";

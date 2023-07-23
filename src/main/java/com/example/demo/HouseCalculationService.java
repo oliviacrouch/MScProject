@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -13,6 +14,13 @@ import java.util.Objects;
 
 @Service
 public class HouseCalculationService {
+
+    @Autowired
+    HouseCalculationRepository houseCalculationRepository;
+
+    public House saveHouse (House house) {
+        return houseCalculationRepository.save(house);
+    }
 
     public String performApiRequest(String apiURL) {
         HttpClient client = HttpClient.newHttpClient();
