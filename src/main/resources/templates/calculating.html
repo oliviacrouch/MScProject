@@ -7,7 +7,7 @@
 
         body {
             background-color: black;
-            font-family: Arial, sans-serif;
+            font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -96,6 +96,28 @@
   }
 }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                showResults();
+            }, 3000);
+        });
+
+        function showResults() {
+            // Hide the loader and show the "Show Results" button
+            var loader = document.querySelector('.loader');
+            loader.style.display = 'none';
+
+            var showResultsButton = document.createElement('button');
+            showResultsButton.textContent = 'Show Results';
+            showResultsButton.classList.add('show-results-button');
+            showResultsButton.addEventListener('click', function () {
+                window.location.href = 'process-score';
+            });
+
+            document.body.appendChild(showResultsButton);
+        }
+    </script>
 </head>
 <body>
 <div class="loader">Loading
