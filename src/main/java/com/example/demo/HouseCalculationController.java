@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
+
 @Controller
 public class HouseCalculationController {
     // autowired relation tool injects the dependency to all
@@ -72,79 +74,87 @@ public class HouseCalculationController {
             constructionDateApiFormat = "Format not recognised";
         }
 
-        System.out.println("The API request is starting.");
-        String apiURL = "https://api.propertydata.co.uk/valuation-rent?key=YZSEDKSVC4"
-                + "&postcode=" + house.getPostcode()
-                + "&internal_area=" + house.getInternalArea()
-                + "&property_type=" + houseTypeApiFormat
-                + "&construction_date=" + constructionDateApiFormat
-                + "&bedrooms=" + house.getBedrooms()
-                + "&bathrooms=" + house.getBathrooms()
-                + "&finish_quality=" + house.getFinishQuality()
-                + "&outdoor_space=" + house.getOutdoorSpace()
-                + "&off_street_parking=" + house.getOffStreetParking();
 
-        //recommended rent and monthly conversion
-        System.out.println(apiURL);
-        String apiResponse = houseCalculationService.performApiRequest(apiURL);
-        System.out.println("This is the api response:" + apiResponse);
-        String weeklyRent = houseCalculationService.handleApiResponse(apiResponse);
-        double monthlyRent = houseCalculationService.calcMonthlyRent(weeklyRent);
-        house.setRentRecommend(String.valueOf(monthlyRent));
-        String handledApiResponse = houseCalculationService.handleApiResponse(apiResponse);
-        System.out.println("This is the handled API response: " + handledApiResponse);
-        // monthly expenses
-        double expenses = houseCalculationService.calcExpenses(monthlyRent, house);
-        house.setExpenses(String.valueOf(expenses));
-        // monthly mortgage payment
-        double monthlyMortgagePayment = houseCalculationService.calcMonthlyMortgagePayment
-                (house.getMortgageAmount(), house.getInterestRate(), house.getLoanTerm());
-        house.setMonthlyMortgagePayment(String.valueOf(monthlyMortgagePayment));
-        // api for demand
-        String apiURLDemand = "https://api.propertydata.co.uk/demand?key=YZSEDKSVC4"
-                + "&postcode=" + house.getPostcode();
-        String apiResponseDemand = houseCalculationService.performApiRequest(apiURLDemand);
-        System.out.println(apiURLDemand);
-        System.out.println("this is the demand API response " + apiResponseDemand);
-        String demand = houseCalculationService.handleDaysOnMarketApiRequest(apiResponseDemand);
-        System.out.println("this is the no days on market: " + demand);
-        house.setDaysOnMarket(demand);
-        // demand rating
-        String demandRating = houseCalculationService.handleDemandRatingApiRequest
-                (apiResponseDemand);
-        System.out.println("This is the demand rating:" + demandRating);
-        house.setDemandRating(demandRating);
-        // gross yield
-        String grossYield = houseCalculationService.calcGrossYield(monthlyRent,
-                Double.parseDouble(house.getPurchasePrice()));
-        house.setGrossYield(grossYield);
-        // net yield
-        String netYield = houseCalculationService.calcNetYield(monthlyRent, monthlyMortgagePayment,
-                expenses, Double.parseDouble(house.getPurchasePrice()));
-        house.setNetYield(netYield);
-        // calculate vacancy rate based off demand rating
-        String vacancyRate = houseCalculationService.calcVacancyRate(house);
-        house.setVacancyRate(vacancyRate);
-        // calculate cash flow
-        String cashFlow = houseCalculationService.calcNetCashFlow(monthlyRent, monthlyMortgagePayment,
-                vacancyRate, expenses);
-        house.setCashFlow(cashFlow);
-        // calculate score for the show-results html page
-        String investmentRating = houseCalculationService.calculateInvestmentRating(house.getPurchasePrice(), netYield, demandRating,
-                cashFlow);
-        house.setInvestmentRating(investmentRating);
-        System.out.println("This is the investment rating: " + investmentRating);
-        // save new details
-        //houseDetailRepo.save(house);
-        House savedHouse = houseCalculationService.saveHouse(house);
-        // carry forward these to the next HTTP page so an analysis of them can be
-        // performed to better inform the user's understanding of the investment rating
-        httpSession.setAttribute("investmentRating", investmentRating);
-        httpSession.setAttribute("cashFlow", cashFlow);
-        httpSession.setAttribute("purchasePrice", savedHouse.getPurchasePrice());
-        httpSession.setAttribute("vacancyRate", vacancyRate);
-        httpSession.setAttribute("netYield", netYield);
-        return "stats";
+        try {
+            System.out.println("The API request is starting.");
+            String apiURL = "https://api.propertydata.co.uk/valuation-rent?key=YZSEDKSVC4"
+                    + "&postcode=" + house.getPostcode()
+                    + "&internal_area=" + house.getInternalArea()
+                    + "&property_type=" + houseTypeApiFormat
+                    + "&construction_date=" + constructionDateApiFormat
+                    + "&bedrooms=" + house.getBedrooms()
+                    + "&bathrooms=" + house.getBathrooms()
+                    + "&finish_quality=" + house.getFinishQuality()
+                    + "&outdoor_space=" + house.getOutdoorSpace()
+                    + "&off_street_parking=" + house.getOffStreetParking();
+
+            //recommended rent and monthly conversion
+            System.out.println(apiURL);
+            String apiResponse = houseCalculationService.performApiRequest(apiURL); ///changed
+            System.out.println("This is the api response:" + apiResponse);
+            String weeklyRent = houseCalculationService.handleApiResponse(apiResponse);
+
+            double monthlyRent = houseCalculationService.calcMonthlyRent(weeklyRent);
+            house.setRentRecommend(String.valueOf(monthlyRent));
+            String handledApiResponse = houseCalculationService.handleApiResponse(apiResponse);
+            System.out.println("This is the handled API response: " + handledApiResponse);
+            // monthly expenses
+            double expenses = houseCalculationService.calcExpenses(monthlyRent, house);
+            house.setExpenses(String.valueOf(expenses));
+            // monthly mortgage payment
+            double monthlyMortgagePayment = houseCalculationService.calcMonthlyMortgagePayment
+                    (house.getMortgageAmount(), house.getInterestRate(), house.getLoanTerm());
+            house.setMonthlyMortgagePayment(String.valueOf(monthlyMortgagePayment));
+            // api for demand
+            String apiURLDemand = "https://api.propertydata.co.uk/demand?key=YZSEDKSVC4"
+                    + "&postcode=" + house.getPostcode();
+            String apiResponseDemand = houseCalculationService.performApiRequest(apiURLDemand);
+            System.out.println(apiURLDemand);
+            System.out.println("this is the demand API response " + apiResponseDemand);
+            String demand = houseCalculationService.handleDaysOnMarketApiRequest(apiResponseDemand);
+            System.out.println("this is the no days on market: " + demand);
+            house.setDaysOnMarket(demand);
+            // demand rating
+            String demandRating = houseCalculationService.handleDemandRatingApiRequest
+                    (apiResponseDemand);
+            System.out.println("This is the demand rating:" + demandRating);
+            house.setDemandRating(demandRating);
+            // gross yield
+            String grossYield = houseCalculationService.calcGrossYield(monthlyRent,
+                    Double.parseDouble(house.getPurchasePrice()));
+            house.setGrossYield(grossYield);
+            // net yield
+            String netYield = houseCalculationService.calcNetYield(monthlyRent, monthlyMortgagePayment,
+                    expenses, Double.parseDouble(house.getPurchasePrice()));
+            house.setNetYield(netYield);
+            // calculate vacancy rate based off demand rating
+            String vacancyRate = houseCalculationService.calcVacancyRate(house);
+            house.setVacancyRate(vacancyRate);
+            // calculate cash flow
+            String cashFlow = houseCalculationService.calcNetCashFlow(monthlyRent, monthlyMortgagePayment,
+                    vacancyRate, expenses);
+            house.setCashFlow(cashFlow);
+            // calculate score for the show-results html page
+            String investmentRating = houseCalculationService.calculateInvestmentRating(house.getPurchasePrice(), netYield, demandRating,
+                    cashFlow);
+            house.setInvestmentRating(investmentRating);
+            System.out.println("This is the investment rating: " + investmentRating);
+            // save new details
+            //houseDetailRepo.save(house);
+            House savedHouse = houseCalculationService.saveHouse(house);
+            // carry forward these to the next HTTP page so an analysis of them can be
+            // performed to better inform the user's understanding of the investment rating
+            httpSession.setAttribute("investmentRating", investmentRating);
+            httpSession.setAttribute("cashFlow", cashFlow);
+            httpSession.setAttribute("purchasePrice", savedHouse.getPurchasePrice());
+            httpSession.setAttribute("vacancyRate", vacancyRate);
+            httpSession.setAttribute("netYield", netYield);
+            return "stats";
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
     }
 
     @GetMapping("/process-score")
