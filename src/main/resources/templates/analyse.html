@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Input property details to calculate cash flow</title>
+    <title>Property Details</title>
     <style>
         body {
             background-color: black;
-            font-family: Arial, sans-serif;
+            font-family: sans-serif;
             color: white;
         }
 
@@ -14,6 +14,33 @@
             width: 80%;
             margin: 0 auto;
         }
+        .nav-container {
+  background-color: white;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  padding: 10px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  border: 2px dotted;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #e0e0e0;
+}
 
         form {
             margin-top: 50px;
@@ -32,26 +59,69 @@
             margin-bottom: 10px;
         }
 
-        input[type="submit"],
-        .button {
-            background-color: #e0e0e0;
+        input[type="submit"], .button
+             {
+            background-color: #ffffff;
+            color: #000000
             border: none;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            border-radius: 5px;
         }
 
         .button-container {
+            align-items: center;
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
 
+        .button-container .button {
+            adding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: black; /* Set the text color to black */
+            background-color: white; /* Set the background color to white */
+            border: none;
+        }
+
+        .button-container .button:last-child {
+            margin-left: 10px;
+        }
+
+
+        .button-container .button[type="submit"] {
+            margin-left: auto;
+            }
+
+        .button-container .button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .radio-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 5px;
+}
+
+.radio-container label {
+    margin-right: 17px; /* Add some space between the radio buttons and text */
+    margin-left: 10px;
+}
+
     </style>
 </head>
 <body>
+<nav>
+    <ul>
+        <li><a onclick="goToHelp();">Help</a></li>
+    </ul>
+</nav>
 <div class="container">
-    <h1>Property Investment Form</h1>
+    <h1>Input Property Details for Instant Analysis</h1>
     <form action="/process-form" method="post">
         <label for="purchasePrice">Purchase Price:</label>
         <input type="number" id="purchasePrice" name="purchasePrice">
@@ -78,6 +148,7 @@
         <input type="number" id="internalArea" name="internalArea">
 
         <label>What Type of Property is it?</label><br>
+        <div class="radio-container">
         <label for="flat">Flat</label>
         <input type="radio" id="flat" name="propertyType" value="flat">
 
@@ -89,8 +160,9 @@
 
         <label for="detached">Detached</label>
         <input type="radio" id="detached" name="propertyType" value="detached_house">
-
+        </div>
         <label>Around When Was the Property Constructed?</label><br>
+        <div class="radio-container">
         <label for="pre_1914">Pre-1914</label>
         <input type="radio" id="pre_1914" name="constructionDate" value="pre_1914">
 
@@ -99,8 +171,9 @@
 
         <label for="2000_onwards">2000-Onwards</label>
         <input type="radio" id="2000_onwards" name="constructionDate" value="two_thousand_onwards">
-
+        </div>
         <label>What Quality of Interior Finish Does it Have?</label><br>
+        <div class="radio-container">
         <label for="very_high">Very High</label>
         <input type="radio" id="very_high" name="finishQuality" value="very_high">
 
@@ -115,7 +188,7 @@
 
         <label for="unmodernised">Unmodernised</label>
         <input type="radio" id="unmodernised" name="finishQuality" value="unmodernised">
-
+        </div>
         <label for="bedrooms">Number of Bedrooms:</label>
         <input type="number" id="bedrooms" name="bedrooms">
 
@@ -126,6 +199,7 @@
         <input type="number" id="off_street_parking" name="offStreetParking">
 
         <label>How Much Outdoor Space Does the Property Have?</label>
+        <div class="radio-container">
         <label for="none">None</label>
         <input type="radio" id="none" name="outdoorSpace" value="none">
 
@@ -137,14 +211,24 @@
 
         <label for="garden_very_large">Large Garden</label>
         <input type="radio" id="garden_very_large" name="outdoorSpace" value="garden_very_large">
-
+        </div>
         <div class="button-container">
-            <button class="button" onclick="window.location.href = 'launchpad';">Back</button>
-            <button type="submit">Next</button>
-            <button class="button" onclick="window.location.href = 'help';">Help</button>
+            <button class="button" type="submit">Next</button>
         </div>
     </form>
 </div>
+<div class="button-container">
+    <button class="button" onclick="goToLaunchpad();">Back</button>
+</div>
+<script>
+            function goToLaunchpad() {
+                window.location.href = 'launchpad';
+              }
+            function goToHelp() {
+                window.location.href = 'help';
+                }
+
+</script>
 </body>
 </html>
 
