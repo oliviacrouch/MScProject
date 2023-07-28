@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQs</title>
+</head>
+<body>
+<div class="container">
+    <!-- Empty container for FAQs (to be populated by JavaScript) -->
+    <div id="faq-container"></div>
+
+    <!-- Section to submit a new question to be answered by admins -->
+    <h1>Submit a question to be answered by admins:</h1>
+    <form action="/faq-form" method="post">
+        <label for="question">Question:</label>
+        <input type="text" id="question" name="question">
+        <button type="submit">Submit Question</button>
+    </form>
+    <a href="/faq">Back to FAQs</a>
+</div>
+</body>
+</html>

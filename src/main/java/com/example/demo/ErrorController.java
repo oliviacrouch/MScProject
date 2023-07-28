@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ErrorController {
 
-    @GetMapping("/error")
+    @GetMapping("/calc-error")
     public String error() {
-        return "error";
+        return "calc-error";
     }
 }
