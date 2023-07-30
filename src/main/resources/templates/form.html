@@ -3,6 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQs</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .question-box {
+            background-color: black;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            text-decoration: underline;
+            color: white;
+            margin: 0;
+        }
+
+        /* Style the "Back to FAQs" and "Submit Question" buttons */
+        .back-link,
+        .submit-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid white;
+            border-radius: 10px;
+            padding: 5px 10px;
+            width: fit-content;
+        }
+
+        .back-link:hover,
+        .submit-btn:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .submit-btn {
+            background-color: transparent;
+            margin-top: 10px;
+        }
+
+        /* Style the question text box */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box; /* Add this line to include padding in the width calculation */
+            margin-top: 10px; /* Add this line to create space between the text box and the label */
+            margin-bottom: 10px; /* Add this line to create space between the text box and the button */
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -10,13 +73,18 @@
     <div id="faq-container"></div>
 
     <!-- Section to submit a new question to be answered by admins -->
-    <h1>Submit a question to be answered by admins:</h1>
-    <form action="/faq-form" method="post">
-        <label for="question">Question:</label>
-        <input type="text" id="question" name="question">
-        <button type="submit">Submit Question</button>
-    </form>
-    <a href="/faq">Back to FAQs</a>
+    <div class="question-box">
+        <h1>Submit a question to be answered by admins:</h1>
+        <form action="/faq-form" method="post">
+            <input type="text" id="question" name="question">
+            <button type="submit" class="submit-btn">Submit Question</button>
+        </form>
+    </div>
+
+    <!-- Back to FAQs link -->
+    <a href="/faq" class="back-link">Back to FAQs</a>
 </div>
 </body>
 </html>
+
+

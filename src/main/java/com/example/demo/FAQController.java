@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FAQController {
@@ -16,18 +17,27 @@ public class FAQController {
     FAQService faqService;
 
     @GetMapping("/faq")
-    public String faq(Model model) {
+    public String faq(@RequestParam(name = "category", defaultValue = "Practical") String category, Model model) {
         List<FAQ> answeredFAQs = faqService.getAnsweredFAQs();
         model.addAttribute("answeredFAQs", answeredFAQs);
+        Map<FAQ.CategoryType, List<FAQ>> faqsByCategory = faqService.sortFAQsByCategory();
+        model.addAttribute("faqsByCategory", faqsByCategory);
+        model.addAttribute("selectedCategory", category);
         return "faq";
     }
 
     @PostMapping("/faq-form")
-    public String newFAQ(@RequestParam String question) {
-        faqService.createPendingFAQ(question);
-        //then return the page which should have the question and its answer on it?
+    public String newFAQ(@RequestParam String question, Model model) {
+        FAQ newFaq = faqService.createPendingFAQ(question);
+        List<FAQ> answeredFAQs = faqService.getAnsweredFAQs();
+        model.addAttribute("answeredFAQs", answeredFAQs);
+        Map<FAQ.CategoryType, List<FAQ>> faqsByCategory = faqService.sortFAQsByCategory();
+        model.addAttribute("faqsByCategory", faqsByCategory);
+        model.addAttribute("selectedCategory", "Practical"); // Set the default category
+        model.addAttribute("newFaq", newFaq); // Add the newly created FAQ to the model
         return "faq";
     }
+
 
     @GetMapping("/form")
     public String form() {

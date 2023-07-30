@@ -3,14 +3,20 @@ package com.example.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FAQServiceImpl implements FAQService{
 
+    //Map<FAQ.CategoryType, List<FAQ>> faqsByCategory = new HashMap<>();
+
     @Autowired
     FAQRepository faqRepository;
 
+    @Override
     public List<FAQ> getAnsweredFAQs() {
         return faqRepository.findByStatus(FAQ.Status.Answered);
     }
@@ -42,5 +48,14 @@ public class FAQServiceImpl implements FAQService{
         return faqRepository.save(faq);
     }
 
+    @Override
+    public Map<FAQ.CategoryType, List<FAQ>> sortFAQsByCategory() {
+        Map<FAQ.CategoryType, List<FAQ>> faqsByCategory = new HashMap<>();
+        for (FAQ faq : getAnsweredFAQs()) {
+            FAQ.CategoryType categoryType = faq.getCategory();
+            faqsByCategory.computeIfAbsent(categoryType, k -> new ArrayList<>()).add(faq);
+        }
+        return faqsByCategory;
+    }
 
 }

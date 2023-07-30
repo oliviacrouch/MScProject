@@ -3,20 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQs</title>
+
+    <!-- Add jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-container {
+            background-color: black;
+            color: white;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .faq-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category {
+            text-decoration: none;
+            color: white;
+        }
+
+        .question {
+            text-decoration: underline;
+            color: white;
+            margin: 0;
+        }
+
+        .answer {
+            display: none;
+        }
+
+        .expand-btn {
+            cursor: pointer;
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Remove bullet points from the list */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Style the "Submit a New Question" link */
+        .submit-link {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .submit-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Position the "Expand" button to the right */
+        .expand-btn-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <!-- Section to display already asked FAQs -->
-    <h1>Frequently Asked Questions</h1>
+    <div class="header">
+        <h1>Frequently Asked Questions</h1>
+        <!-- Link to navigate to the "Submit FAQ" page -->
+        <a href="form" class="submit-link">Submit a New Question</a>
+    </div>
     <ul>
         <li th:each="faq : ${answeredFAQs}">
-            <h3 th:text="${faq.question}"></h3>
-            <p th:text="${faq.answer}"></p>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <!-- Display the category of each FAQ next to the question -->
+                    <h3>
+                        <span class="category" th:text="${faq.category}"></span> -
+                        <span class="question" th:text="${faq.question}"></span>
+                    </h3>
+                    <!-- Expand/Collapse button -->
+                    <div class="expand-btn-container">
+                        <span class="expand-btn">Expand</span>
+                    </div>
+                </div>
+                <!-- Answer initially hidden; shown when clicking expand -->
+                <p class="answer" th:text="${faq.answer}"></p>
+            </div>
         </li>
     </ul>
-
-    <!-- Link to navigate to the "Submit FAQ" page -->
-    <a href="form">Submit a New Question</a>
 </div>
+
+<!-- JavaScript/jQuery code -->
+<script>
+    $(document).ready(function () {
+        // Click event for the expand/collapse button
+        $('.expand-btn').click(function () {
+            var answer = $(this).parent().parent().parent().find('.answer');
+            answer.slideToggle();
+
+            // Toggle the "Expand" and "Collapse" text
+            $(this).text(function (_, text) {
+                return text === 'Expand' ? 'Collapse' : 'Expand';
+            });
+        });
+    });
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
