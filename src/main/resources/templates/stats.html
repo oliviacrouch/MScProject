@@ -5,79 +5,69 @@
     <title>Stats</title>
     <style>
         body {
-            background-color: black;
-            color: white;
-            margin: 20px;
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+            margin: 100px;
             font-family: Arial, sans-serif;
         }
 
         .white-box {
-            border: 3px solid white;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            padding: 10px;
-            text-align: center;
-        }
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: center;
+}
 
         .centered-text {
             text-align: center;
         }
 
-        table {
-            width: 250px;
-            border-collapse: collapse;
-            margin: 0 auto;
-        }
-
+    table {
+  width: 250px;
+  border-collapse: collapse;
+  margin: 0 auto;
+  margin-top: 85px;
+  float: right; /* Move the table to the right */
+  margin-left: 20px; /* Add space between table and content */
+  border-radius: 10px; /* Add rounded edges */
+  overflow: hidden; /* Ensure content doesn't extend beyond rounded edges */
+}
         td {
             padding: 10px;
-            border: 3px solid white;
+            border: 3px solid #2F4F4F;
         }
 
         th {
-            background-color: white;
-            color: black;
+            background-color: #2F4F4F;
+            color: #FFFAF0;
             text-align: center;
             position: relative;
         }
 
-        .collapse-button {
-            cursor: pointer;
-            color: black;
-            text-decoration: underline;
-            margin-bottom: 10px;
-        }
-
-        .collapsed:after {
-            content: "Collapse";
-        }
-
-        .expanded:after {
-            content: "Expand";
-        }
-
-        .button-container {
+   .button-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 20px;
-    justify-content: space-between; /* Distribute buttons with equal spacing */
+    margin-top: 50px;
+    justify-content: space-between;
+    gap: 20px; /* Add spacing between white-box elements */
 }
 
-.button-container .white-box {
-    flex: 1 0 30%; /* flex-grow: 1; flex-basis: 30% */
-    margin: 5px;
-    background-color: black;
-    color: white;
-    min-width: 75px;
-    border: 2px solid white;
-    border-radius: 10px;
-    height: 200px;
+.white-box {
+    flex: 1 0 calc(33.33% - 20px); /* Equally distribute with spacing */
+    margin: 0;
+    padding: 10px; /* Add padding for spacing inside white-box */
+    text-align: center;
+    background-color: transparent;
+    color: #2F4F4F;
+    min-width: 200px;
+    height: 400px;
     font-size: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    box-sizing: border-box;
+    border: none; /* Remove border */
 }
 
 .button-title {
@@ -94,28 +84,44 @@
     .button-container .white-box {
         flex: 1 0 100%; /* Full width on small screens */
     }
+    .button-launchpad {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0! important;
+    }
+        .help-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
 }
-    </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.collapse-button').click(function () {
-                $(this).toggleClass('collapsed');
-                var tableDetails = $('.table-details');
-                tableDetails.toggle();
-                if (tableDetails.is(':visible')) {
-                    $(this).removeClass('expanded').addClass('collapsed');
-                } else {
-                    $(this).removeClass('collapsed').addClass('expanded');
-                }
-            });
+.rent-text {
+colour: #FFFAF0;
+}
 
-            $('.button').click(function () {
-                // Handle button click event here
-                // Add your logic for button actions
-            });
-        });
-    </script>
+
+    </style>
 </head>
 <body>
 <h1> View the predictions below for your property details </h1>
@@ -125,7 +131,6 @@
     <tr>
         <th colspan="2">
             Your Property Details
-            <span class="collapse-button collapsed"></span>
         </th>
     </tr>
     </thead>
@@ -190,24 +195,28 @@
 </table>
 
 <div class="button-container">
-    <button class="white-box button-rent">
-        <span class="button-title">Recommended Rent PCM:</span>
-        <span class="button-body" th:text="${'£' + house.rentRecommend}"></span>
+
+    <button class="white-box button-expenses"
+            th:data-expenses="${house.expenses}"
+            th:data-recommended-rent="${house.rentRecommend}"
+            th:data-mortgage-monthly="${house.monthlyMortgagePayment}">
+        <span class ="button-title">Monthly Expenses vs Rent:</span>
+        <span class="button-body">
+        Expenses: <span th:text="${'£' + house.expenses}"></span><br>
+        Mortgage: <span th:text="${'£' + house.monthlyMortgagePayment}"></span><br>
+        Rent: <span th:text="${'£' + house.rentRecommend}"></span><br>
+        </span>
+        <canvas class="expensesChart" style="height:100%;width:100%"></canvas>
+
     </button>
 
-    <button class="white-box button-expenses">
-        <span class ="button-title">Estimated expenses PCM:</span>
-        <span class="button-body" th:text="${'£' + house.expenses}"></span>
-    </button>
-
-    <button class="white-box button-mortgageMonthly">
-        <span class ="button-title">Monthly mortgage payment:</span>
-        <span class="button-body" th:text="${'£' + house.monthlyMortgagePayment}"></span>
-    </button>
-
-    <button class="white-box button-daysOnMarket">
-        <span class ="button-title">Average days on market in the area:</span>
-        <span class="button-body" th:text="${house.daysOnMarket}"></span>
+    <button class="white-box button-daysOnMarket"
+    th:data-daysOnMarket="${house.daysOnMarket}"
+    th:data-ukAv="223">
+        <span class ="button-title">Days on market</span>
+        This property: <span class="button-body" th:text="${house.daysOnMarket}"></span>
+        UK average: 223
+        <canvas class="daysOnMarketChart" style="height:100%;width:100%"></canvas>
     </button>
 
     <button class="white-box button-demandRating">
@@ -215,19 +224,22 @@
         <span class="button-body" th:text="${house.demandRating}"></span>
     </button>
 
-    <button class="white-box button-grossYield">
-        <span class ="button-title">Gross yield:</span>
-        <span class="button-body" th:text="${house.grossYield + '%'}"></span>
+    <button class="white-box button-combinedYield"
+            th:data-gross-yield="${house.grossYield}"
+            th:data-net-yield="${house.netYield}">
+        <span class="button-title">Yield:</span>
+        <span class="button-body">
+        Gross: <span th:text="${house.grossYield + '%'}"></span><br>
+        Net: <span th:text="${house.netYield + '%'}"></span>
+    </span>
+        <canvas class="yieldChart" style="height:100%;width:100%;max-width:700px"></canvas>
     </button>
 
-    <button class="white-box button-netYield">
-        <span class ="button-title">Net Yield:</span>
-        <span class="button-body" th:text="${house.netYield + '%'}"></span>
-    </button>
-
-    <button class="white-box button-vacancyRate">
+    <button class="white-box button-vacancyRate"
+    th:data-vacancy="${house.vacancyRate}">
         <span class ="button-title">Vacancy Rate:</span>
         <span class="button-body" th:text="${'Around ' + house.vacancyRate}"></span>
+        <canvas id="vacancyChart" style="height:100%;width:100%;"></canvas>
     </button>
 
     <button class="white-box button-cashFlow">
@@ -235,6 +247,266 @@
         <span class="button-body" th:text="${'£' + house.cashFlow}"></span>
     </button>
 </div>
+<div class="button-launchpad">
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀 Launchpad</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const combinedYieldButton = document.querySelector('.button-combinedYield');
+        const grossYield = parseFloat(combinedYieldButton.getAttribute('data-gross-yield'));
+        const netYield = parseFloat(combinedYieldButton.getAttribute('data-net-yield'));
 
+        if (isNaN(grossYield) || isNaN(netYield)) {
+            console.error('Invalid value');
+            return;
+        }
+
+        // Define colors based on grossYield and netYield values
+        let grossBackgroundColor, grossBorderColor;
+        let netBackgroundColor, netBorderColor;
+
+        if (grossYield < 0) {
+            grossBackgroundColor = 'rgba(255, 0, 0, 0.2)';
+            grossBorderColor = 'rgba(255, 0, 0, 1)';
+        } else {
+            grossBackgroundColor = 'rgba(0, 255, 0, 0.2)';
+            grossBorderColor = 'rgba(0, 255, 0, 1)';
+        }
+
+        if (netYield < 0) {
+            netBackgroundColor = 'rgba(255, 0, 0, 0.2)';
+            netBorderColor = 'rgba(255, 0, 0, 1)';
+        } else {
+            netBackgroundColor = 'rgba(0, 255, 0, 0.2)';
+            netBorderColor = 'rgba(0, 255, 0, 1)';
+        }
+
+        // Create a Chart.js chart
+        const ctx = combinedYieldButton.querySelector('.yieldChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Gross and Net Yield'],
+                datasets: [{
+                    label: 'Gross Yield',
+                    data: [grossYield],
+                    backgroundColor: grossBackgroundColor,
+                    borderColor: grossBorderColor,
+                    borderWidth: 1
+                }, {
+                    label: 'Net Yield',
+                    data: [netYield],
+                    backgroundColor: netBackgroundColor,
+                    borderColor: netBorderColor,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        stacked: true
+                    },
+                    x: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+});
+</script>
+
+<script>
+// Expenses/mortgage/rent chart
+document.addEventListener('DOMContentLoaded', function() {
+    const expensesButton = document.querySelector('.button-expenses');
+    const expensesRentRecommend = parseFloat(expensesButton.getAttribute('data-recommended-rent'));
+    const expenses = parseFloat(expensesButton.getAttribute('data-expenses'));
+    const mortgageMonthly = parseFloat(expensesButton.getAttribute('data-mortgage-monthly'));
+
+    if (isNaN(expensesRentRecommend) || isNaN(expenses) || isNaN(mortgageMonthly)) {
+        console.error('Invalid value');
+        return;
+    }
+
+    let expensesBackgroundColor, expensesBorderColor;
+    let mortgageBackgroundColor, mortgageBorderColor;
+    let rentBackgroundColor, rentBorderColor;
+
+    if (expensesRentRecommend < mortgageMonthly) {
+        mortgageBackgroundColor = 'rgba(255, 0, 0, 0.2)';
+        mortgageBorderColor = 'rgba(255, 0, 0, 1)';
+    } else if (expensesRentRecommend >= mortgageMonthly && expensesRentRecommend < (1.25 * mortgageMonthly)) {
+        mortgageBackgroundColor = 'rgba(255, 165, 0, 0.2)';
+        mortgageBorderColor = 'rgba(255, 165, 0, 1)';
+    } else if (expensesRentRecommend >= (1.25 * mortgageMonthly)) {
+        mortgageBackgroundColor = 'rgba(0, 255, 0, 0.2)';
+        mortgageBorderColor = 'rgba(0, 255, 0, 1)';
+    }
+
+    if (expensesRentRecommend < (mortgageMonthly + expenses)) {
+        rentBackgroundColor = 'rgba(255, 165, 165, 0.2)'; // Lighter red
+        rentBorderColor = 'rgba(255, 100, 100, 1)';
+    } else if (expensesRentRecommend > (mortgageMonthly + expenses)) {
+        rentBackgroundColor = 'rgba(173, 255, 173, 0.2)';
+        rentBorderColor = 'rgba(173, 255, 173, 1)';
+
+    }
+
+    if (expenses <= (0.4 * expensesRentRecommend)) {
+        expensesBackgroundColor = 'rgba(144, 238, 144, 0.2)';
+        expensesBorderColor = 'rgba(144, 238, 144, 1)';
+    } else if (expenses > (0.4 * expensesRentRecommend) && expenses < (0.5 * expensesRentRecommend)) {
+        expensesBackgroundColor = 'rgba(255, 204, 102, 0.2)';
+        expensesBorderColor = 'rgba(255, 204, 102, 1)';
+    } else if (expenses >= (0.5 * expensesRentRecommend)) {
+        expensesBackgroundColor = 'rgba(255, 209, 209, 0.2)'; // Even lighter red
+        expensesBorderColor = 'rgba(255, 165, 165, 1)';
+    }
+
+    const expensesCtx = expensesButton.querySelector('.expensesChart').getContext('2d');
+    new Chart(expensesCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Expenses, Mortgage and Rent'],
+            datasets: [{
+                label: 'Expenses',
+                data: [expenses],
+                backgroundColor: expensesBackgroundColor,
+                borderColor: expensesBorderColor,
+                borderWidth: 1
+            }, {
+                label: 'Mortgage',
+                data: [mortgageMonthly],
+                backgroundColor: mortgageBackgroundColor,
+                borderColor: mortgageBorderColor,
+                borderWidth: 1
+            }, {
+                label: 'Rent',
+                data: [expensesRentRecommend],
+                backgroundColor: rentBackgroundColor,
+                borderColor: rentBorderColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+});
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Get the canvas element
+const canvas = document.getElementById('vacancyChart');
+
+// Get the vacancy button and data
+const vacancyButton = document.querySelector('.button-vacancyRate');
+const vacancyString = vacancyButton.getAttribute('data-vacancy');
+const vacancyNumber = vacancyString.replace("%", "");
+const vacancy = parseFloat(vacancyNumber);
+const occupied = 100 - vacancy;
+
+let vacantBackgroundColor, vacantBorderColor;
+let occupiedBackgroundColor, occupiedBorderColor;
+occupiedBackgroundColor = 'rgba(0, 255, 0, 0.2)';
+occupiedBorderColor = 'rgba(0, 255, 0, 1)';
+vacantBackgroundColor = 'rgba(255, 0, 0, 0.2)';
+vacantBorderColor = 'rgba(255, 0, 0, 1)';
+
+// Create the data for the pie chart
+const data = {
+  labels: ['Days of Year Vacant', 'Days of Year Occupied'],
+  datasets: [{
+    data: [vacancy, occupied],
+    backgroundColor: [vacantBackgroundColor, occupiedBackgroundColor],
+    borderColor: [vacantBorderColor, occupiedBorderColor],
+    borderWidth: 1
+  }]
+};
+
+
+// Create the pie chart
+const vacancyChart = new Chart(canvas, {
+  type: 'pie',
+  data: data,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false
+  }
+});
+});
+</script>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const daysOnMarketButton = document.querySelector('.button-daysOnMarket');
+        const daysOnMarket = parseFloat(daysOnMarketButton.getAttribute('data-daysOnMarket'));
+        const UKAv = daysOnMarketButton.getAttribute('data-ukAv');
+
+        if (isNaN(UKAv) || isNaN(daysOnMarket)) {
+            console.error('Invalid value');
+            return;
+        }
+
+        // Define colors based on grossYield and netYield values
+        let daysOnBackgroundColor, daysOnBorderColor;
+        let avBackgroundColor, avBorderColor;
+
+        if (daysOnMarket < 223) {
+        daysOnBackgroundColor = 'rgba(144, 238, 144, 0.2)';
+        daysOnBorderColor = 'rgba(144, 238, 144, 1)';
+    } else if (daysOnMarket >= 223 && daysOnMarket < 250) {
+        daysOnBackgroundColor = 'rgba(255, 204, 102, 0.2)';
+        daysOnBorderColor = 'rgba(255, 204, 102, 1)';
+    } else if (daysOnMarket > 250) {
+        daysOnBackgroundColor = 'rgba(255, 209, 209, 0.2)'; // Even lighter red
+        daysOnBorderColor = 'rgba(255, 165, 165, 1)';
+    }
+
+    avBackgroundColor = 'rgba(255, 165, 0, 0.2)';
+    avBorderColor = 'rgba(255, 165, 0, 1)';
+
+        // Create a Chart.js chart
+        const daysOnCtx = daysOnMarketButton.querySelector('.daysOnMarketChart').getContext('2d');
+        new Chart(daysOnCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Days on Market'],
+                datasets: [{
+                    label: 'This Property',
+                    data: [daysOnMarket],
+                    backgroundColor: daysOnBackgroundColor,
+                    borderColor: daysOnBorderColor,
+                    borderWidth: 1
+                }, {
+                    label: 'UK Average',
+                    data: [UKAv],
+                    backgroundColor: avBackgroundColor,
+                    borderColor: avBorderColor,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+});
+</script>
 </body>
 </html>

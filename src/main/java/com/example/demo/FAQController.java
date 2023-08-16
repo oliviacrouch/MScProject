@@ -44,4 +44,11 @@ public class FAQController {
         return "form";
     }
 
+    @PostMapping("/update-faq")
+    public String updateAnswer(@RequestParam String answer, @RequestParam int id, Model model) {
+        FAQ newAnswer = faqService.updateAnswer(id, answer);
+        model.addAttribute("answer", newAnswer);
+        return "redirect:/faq";
+    }
+
 }

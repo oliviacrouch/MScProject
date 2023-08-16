@@ -18,6 +18,14 @@ public class FAQ {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public enum Status {
         Pending,
         Answered,

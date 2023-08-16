@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ Database</title>
+</head>
+<body>
+<h1>FAQ Database</h1>
+<table>
+    <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    <th:block th:each="faq : ${allFaqs}">
+        <tr>
+            <td th:text="${faq.question}"></td>
+            <td>
+                <span th:text="${faq.answer}"></span>
+                <span th:unless="${faq.answer}">
+        <form action="/answer-faq" method="post">
+            <input type="hidden" name="id" th:value="${faq.id}">
+            <input type="text" name="newAnswer">
+            <button type="submit">Answer</button>
+        </form>
+    </span>
+            </td>
+
+            <td th:text="${faq.category}"></td>
+            <td th:text="${faq.status}"></td>
+            <td>
+                <form action="update-faq" method="post">
+                    <input type="hidden" name="id" th:value="${faq.id}">
+                    <input type="text" name="answer">
+                    <button type="submit">Answer</button>
+                </form>
+                <form action="/delete-faq" method="post">
+                    <input type="hidden" name="id" th:value="${faq.id}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Management</title>
+  <style>
+  body {
+  font-family: Arial;
+  background-color: #FFFAF0;
+  color: #2F4F4F;
+  }
+
+        /* Style for the folder container */
+        .folder {
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            width: 700px;
+            margin: 20px auto;
+        }
+
+        /* Style for the tab container */
+        .tab-container {
+            display: flex;
+            justify-content: space-around;
+            background-color: #FFEBCD;
+            border-bottom: 2px solid #333;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Style for each tab */
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Style for the active tab */
+        .active-tab {
+            background-color: #FFFAF0;
+            border-bottom: 2px solid #FFFAF0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Style for the tab content container */
+        .tab-content-container {
+            border: 2px solid #333;
+            border-radius: 0 0 10px 10px;
+            padding: 20px;
+            display: none;
+        }
+
+        /* Style for the active tab content */
+        .active-content {
+            display: block;
+        }
+           .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .button {
+        flex: 1; /* Distribute equal space to each button and make them equally spread out */
+        display: flex; /* Enable flexbox for the button contents */
+        align-items: center; /* Center the button contents vertically */
+        justify-content: center; /* Center the button contents horizontally */
+        background-color: #FFFAF0; /* Set default background color */
+        color: #2F4F4F; /* Set default text color */
+        border: 1px solid #2F4F4F;
+        border-radius: 10px;
+        padding: 10px 30px; /* Increase the horizontal padding to create more space */
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #2F4F4F; /* Change the background color on hover */
+        color: white; /* Change the text color on hover */
+    }
+
+    .button a {
+        flex-grow: 1; /* Allow the text to fill the available space */
+        text-decoration: none;
+        color: inherit; /* Use the default text color */
+    }
+    .help-button {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        background-color: #FFFAF0;
+        color: #2F4F4F;
+        border: 1px solid #2F4F4F;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover {
+        background-color: #2F4F4F;
+        color: #FFFAF0; /* Change the text color to white on hover */
+    }
+    .help-button a {
+        text-decoration: none; /* Remove the underline */
+        color: inherit; /* Use the default text color */
+    }
+    .heading {
+    text-align: center;
+    }
+    </style>
+</head>
+<body>
+<h1 class="heading">Property Management Guidance</h1>
+<div class="folder">
+  <div class="tab-container">
+    <div class="tab active-tab" onclick="showTabContent('tab-tenants')">Tenants</div>
+    <div class="tab" onclick="showTabContent('tab-maintenance')">Maintenance</div>
+    <div class="tab" onclick="showTabContent('tab-financial-compliance')">Financial & Compliance</div>
+  </div>
+  <div class="tab-content-container active-content" id="tab-tenants">
+    <h2>Tenants</h2>
+    <h3>Marketing and Advertising:</h3>
+    <ul>
+      <li>Utilize online platforms, local listings, and social media to reach potential tenants.</li>
+      <li>Create attractive property listings with clear descriptions and high-quality photos.</li>
+    </ul>
+
+    <h3>Tenant Screening:</h3>
+    <ul>
+      <li>Conduct thorough background checks on potential tenants, including credit history, employment verification, and rental references.</li>
+      <li>Screen for reliable and responsible tenants to minimize the risk of rent arrears and property damage.</li>
+    </ul>
+
+    <h3>Lease Agreements:</h3>
+    <ul>
+      <li>Prepare comprehensive and legally binding lease agreements that clearly outline the terms and conditions of the tenancy.</li>
+      <li>Include details about rent payment, security deposits, maintenance responsibilities, and lease duration.</li>
+    </ul>
+  </div>
+
+  <div class="tab-content-container" id="tab-maintenance">
+    <h2>Maintenance</h2>
+    <h3>Regular Inspections:</h3>
+    <ul>
+      <li>Schedule periodic inspections to identify any maintenance issues or potential problems.</li>
+      <li>Address maintenance requests promptly to ensure tenant satisfaction and avoid further damage.</li>
+    </ul>
+
+    <h3>Emergency Response:</h3>
+    <ul>
+      <li>Establish a 24/7 emergency contact for tenants to report urgent issues.</li>
+      <li>Arrange for quick and efficient resolution of emergency repairs to safeguard the property and tenant safety.</li>
+    </ul>
+
+    <h3>Preventative Maintenance:</h3>
+    <ul>
+      <li>Implement a preventative maintenance plan to address routine tasks like HVAC servicing, gutter cleaning, and pest control.</li>
+      <li>Regular maintenance can extend the life of property components and reduce the likelihood of major repairs.</li>
+    </ul>
+  </div>
+
+  <div class="tab-content-container" id="tab-financial-compliance">
+    <h2>Financial & Compliance</h2>
+    <h3>Rent Collection:</h3>
+    <ul>
+      <li>Set up a reliable and convenient rent collection system, such as online payment options.</li>
+      <li>Follow up on late payments and enforce the terms of the lease agreement.</li>
+    </ul>
+
+    <h3>Accounting and Record-Keeping:</h3>
+    <ul>
+      <li>Maintain accurate financial records of income and expenses related to the property.</li>
+      <li>Keep track of repair costs, property taxes, insurance premiums, and other expenditures.</li>
+    </ul>
+
+    <h3>Legal Compliance:</h3>
+    <ul>
+      <li>Stay informed about local landlord-tenant laws and regulations to ensure compliance.</li>
+      <li>Obtain the necessary licenses and permits required for rental properties in your area.</li>
+    </ul>
+
+    <h3>Tenant Relations:</h3>
+    <ul>
+      <li>Foster positive tenant relationships through open communication and responsiveness.</li>
+      <li>Address tenant concerns and queries professionally and promptly.</li>
+    </ul>
+  </div>
+</div>
+<script>
+        function showTabContent(tabId) {
+            const allTabContents = document.querySelectorAll('.tab-content-container');
+            allTabContents.forEach(tabContent => {
+                tabContent.classList.remove('active-content');
+            });
+
+            const activeTabContent = document.getElementById(tabId);
+            activeTabContent.classList.add('active-content');
+
+            const allTabs = document.querySelectorAll('.tab');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active-tab');
+            });
+
+            const activeTab = document.querySelector(`[onclick="showTabContent('${tabId}')"]`);
+            activeTab.classList.add('active-tab');
+        }
+    </script>
+<div class="button-container">
+  <button class="button" onclick="window.location.href = 'finance';"> &#8592; Finance</button>
+  <button class="button" onclick="window.location.href = 'launchpad';">🚀 Launchpad</button>
+  <button class="button" onclick="window.location.href = 'legal';">Legal Info &#8594;</button>
+</div>
+</div>
+<button class="help-button"><a href="help">Help</a></button>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+    form {
+            margin-top: 50px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"]
+        input[type = "password"] {
+            width: 100%;
+            padding: 5px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"], .button
+             {
+            background-color: #ffffff;
+            color: #000000
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button-container {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-container .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: black; /* Set the text color to black */
+            background-color: white; /* Set the background color to white */
+            border: none;
+        }
+    body {
+            background-color: black;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        .nav-container {
+  background-color: white;
+}
+        .button-container .button[type="submit"] {
+            margin-left: auto;
+            }
+
+        .button-container .button:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Admin Login to FAQ Database</h1>
+    <form id="login-form" action="/login" method="post">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <div class="button-container">
+            <button class="button" type="submit">Login</button>
+        </div>
+        <div id="error-message" style="color: red;">
+            <th:block th:if="${param.error == 'invalid'}">
+                Invalid login credentials. Please try again.
+            </th:block>
+        </div>
+    </form>
+</div>
+<script>
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
+    })
+    .then(response => response.text())
+    .then(data => {
+        if (data === "FAQ-database") {
+            window.location.href = "/FAQ-database"; // Use the full URL with leading slash
+<!--        } else {-->
+<!--            document.getElementById("error-message").textContent = data;-->
+<!--        }-->
+    })
+    .catch(error => {
+        console.error("An error occurred:", error);
+    });
+});
+
+</script>
+</body>
+</html>

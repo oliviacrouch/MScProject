@@ -17,6 +17,19 @@ public class FAQServiceImpl implements FAQService{
     FAQRepository faqRepository;
 
     @Override
+    public List<FAQ> getAllFAQs () {
+        return faqRepository.findAll();
+    }
+
+    @Override
+    public FAQ updateAnswer(int id, String answer) {
+        FAQ faq = faqRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("FAQ not found."));
+        faq.setAnswer(answer);
+        faq.setStatus(FAQ.Status.Answered);
+        return faqRepository.save(faq);
+    }
+
+    @Override
     public List<FAQ> getAnsweredFAQs() {
         return faqRepository.findByStatus(FAQ.Status.Answered);
     }
