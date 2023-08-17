@@ -120,12 +120,52 @@
 colour: #FFFAF0;
 }
 
-
+            .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0! important;
+    }
+        .help-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+    .button a,
+    .help-button a {
+      text-decoration: none; /* Remove the underline */
+      color: #2F4F4F; /* Set link color to white */
+    }
     </style>
 </head>
 <body>
 <h1> View the predictions below for your property details </h1>
-<button class="calculate-button" onclick="window.location.href = 'calculating';">Calculate Investment Score</button>
+<!--<button class="calculate-button" onclick="window.location.href = 'calculating';">Calculate Investment Score</button>-->
 <table>
     <thead>
     <tr>
@@ -242,13 +282,12 @@ colour: #FFFAF0;
         <canvas id="vacancyChart" style="height:100%;width:100%;"></canvas>
     </button>
 
-    <button class="white-box button-cashFlow">
+    <button class="white-box button-cashFlow"
+    th:data-cashFlow="${house.cashFlow}">
         <span class ="button-title">Net cash flow per month:</span>
         <span class="button-body" th:text="${'£' + house.cashFlow}"></span>
+        <canvas class="cashFlowChart" style="height:100%;width:100%;"></canvas>
     </button>
-</div>
-<div class="button-launchpad">
-    <button class="button" onclick="window.location.href = 'launchpad';">🚀 Launchpad</button>
 </div>
 <button class="help-button" onclick="window.location.href = 'help';">Help</button>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -508,5 +547,57 @@ const vacancyChart = new Chart(canvas, {
     });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cashFlowButton = document.querySelector('.button-cashFlow');
+    const cashFlow = parseFloat(cashFlowButton.getAttribute('data-cashFlow'));
+
+    if (isNaN(cashFlow)) {
+        console.error('Invalid value');
+        return;
+    }
+
+    let cashFlowBackgroundColor, cashFlowBorderColor;
+
+    if (cashFlow < 0) {
+        cashFlowBackgroundColor = 'rgba(255, 0, 0, 0.2)';
+        cashFlowBorderColor = 'rgba(255, 0, 0, 1)';
+    } else if (cashFlow > 0) {
+        cashFlowBackgroundColor = 'rgba(0, 255, 0, 0.2)';
+        cashFlowBorderColor = 'rgba(0, 255, 0, 1)';
+    }
+
+    const cashFlowCtx = cashFlowButton.querySelector('.cashFlowChart').getContext('2d');
+    new Chart(cashFlowCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Cash Flow PCM'],
+            datasets: [{
+                label: 'Cash Flow',
+                data: [cashFlow],
+                backgroundColor: cashFlowBackgroundColor,
+                borderColor: cashFlowBorderColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+});
+
+</script>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'legal';"> &#8592; Back to House Details</button>
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+    <button class="button" onclick="window.location.href = 'calculating';">CALCULATE INVESTMENT SCORE &#8594;</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
 </body>
 </html>
