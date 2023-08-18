@@ -9,4 +9,5 @@ public interface FAQService {
     List<FAQ> getAnsweredFAQs();
     FAQ createPendingFAQ(String question);
     Map<FAQ.CategoryType, List<FAQ>> sortFAQsByCategory();
+    void deleteFAQ(int id);
 }

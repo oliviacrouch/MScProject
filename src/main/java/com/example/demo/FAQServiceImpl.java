@@ -71,4 +71,9 @@ public class FAQServiceImpl implements FAQService{
         return faqsByCategory;
     }
 
+    @Override
+    public void deleteFAQ(int id) {
+        faqRepository.deleteById(id);
+    }
+
 }

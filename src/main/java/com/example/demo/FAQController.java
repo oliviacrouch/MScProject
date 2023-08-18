@@ -51,4 +51,10 @@ public class FAQController {
         return "redirect:/faq";
     }
 
+    @PostMapping("/delete-faq")
+    public String deleteFAQ(@RequestParam int id, Model model) {
+        faqService.deleteFAQ(id);
+        return "redirect:/faq";
+    }
+
 }

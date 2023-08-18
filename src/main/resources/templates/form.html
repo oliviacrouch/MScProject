@@ -5,8 +5,8 @@
     <title>FAQs</title>
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: #2F4F4F;
+            color: #2F4F4F;
             font-family: Arial, sans-serif;
         }
 
@@ -18,7 +18,7 @@
         }
 
         .question-box {
-            background-color: black;
+            background-color: #FFFAF0;
             border: 2px solid white;
             border-radius: 10px;
             padding: 20px;
@@ -29,26 +29,41 @@
 
         .question {
             text-decoration: underline;
-            color: white;
+            color:  #2F4F4F;
             margin: 0;
         }
 
         /* Style the "Back to FAQs" and "Submit Question" buttons */
-        .back-link,
-        .submit-btn {
-            color: white;
+        .back-link {
+            color: #FFFAF0;
             text-decoration: none;
             font-weight: bold;
-            border: 2px solid white;
+            border: 2px solid #FFFAF0;
             border-radius: 10px;
             padding: 5px 10px;
             width: fit-content;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .submit-btn {
+            color: #2F4F4F;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #2F4F4F;
+            border-radius: 10px;
+            padding: 5px 10px;
+            width: fit-content;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .back-link:hover,
+        .back-link:hover
+        {
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+        }
+
         .submit-btn:hover {
-            background-color: white;
-            color: black;
+            background-color: #2F4F4F;
+            color: #FFFAF0;
         }
 
         .submit-btn {

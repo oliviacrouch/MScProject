@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <style>
+    body {
+    background: #FFFAF0;
+    color: #2F4F4F;
+    font-family: Arial;
+    margin: 150px;
+    }
+
     form {
             margin-top: 50px;
         }
@@ -24,51 +31,64 @@
 
         input[type="submit"], .button
              {
-            background-color: #ffffff;
-            color: #000000
+            background-color: #FFFAF0;
+            color: #2F4F4F
             border: none;
             padding: 10px 20px;
+            border: 1px solid #2F4F4F;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
         }
 
-        .button-container {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+         .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
 
         .button-container .button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
-            color: black; /* Set the text color to black */
-            background-color: white; /* Set the background color to white */
-            border: none;
+            color: #2F4F4F; /* Set the text color to black */
+            background-color: #FFFAF0; /* Set the background color to white */
+            border: 1px solid #2F4F4F;
+            border-radius: 10px;
         }
-    body {
-            background-color: black;
-            font-family: sans-serif;
-            color: white;
-        }
+        .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+        .help-button {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover
+    {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
 
         .container {
-            width: 80%;
+            width: 50%;
             margin: 0 auto;
         }
-        .nav-container {
-  background-color: white;
-}
-        .button-container .button[type="submit"] {
-            margin-left: auto;
-            }
 
-        .button-container .button:hover {
-            background-color: #e0e0e0;
-        }
+
     </style>
 </head>
 <body>
@@ -110,9 +130,6 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     .then(data => {
         if (data === "FAQ-database") {
             window.location.href = "/FAQ-database"; // Use the full URL with leading slash
-<!--        } else {-->
-<!--            document.getElementById("error-message").textContent = data;-->
-<!--        }-->
     })
     .catch(error => {
         console.error("An error occurred:", error);
@@ -120,5 +137,11 @@ document.getElementById("login-form").addEventListener("submit", function(event)
 });
 
 </script>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'keywords';">Back</button>
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+<!--    <button class="button" type="submit">Login</button>-->
+</div>
+<button class="help-button">Help</button>
 </body>
 </html>
