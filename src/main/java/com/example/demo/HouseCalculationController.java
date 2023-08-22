@@ -159,8 +159,8 @@ public class HouseCalculationController {
         }
     }
 
-    @ExceptionHandler(IOException.class)
-    public String handleIOException(IOException e) {
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String illegalArgumentException(IllegalArgumentException e) {
         return "calc-error";
     }
 
