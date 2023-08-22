@@ -3,15 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <title>Rating</title>
+    <style>
+        body {
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+            font-family: Arial, sans-serif;
+        }
+
+        .rating-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .investment-rating {
+            font-size: 64px; /* Increased font size for the rating */
+            font-weight: bold;
+            background-color: #FFFAF0; /* White background color for the rating */
+            color: #2F4F4F; /* Black font color for the rating */
+            padding: 10px 20px; /* Padding to create space around the rating number */
+            border-radius: 15px; /* Rounded edges for the box */
+        }
+
+        .rating-number {
+            color: #2F4F4F; /* Set the font color for the investment rating number */
+        }
+
+        .rating-analysis {
+            margin-top: 20px; /* Add some spacing between the rating number and analysis */
+            text-align: center;
+            background-color: #FFFAF0; /* White background color for the analysis box */
+            padding: 20px; /* Padding to create space around the analysis content */
+            border-radius: 15px; /* Rounded edges for the analysis box */
+        }
+
+        .rating-analysis h2 {
+            font-size: 24px; /* Change the font size for the rating analysis heading */
+            margin-bottom: 10px; /* Add some spacing below the heading */
+        }
+              .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+        .help-button {
+      position: fixed;
+      top: 10px;
+      left: 20px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+    .bar-chart {
+    width: 80%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.bar {
+    background-color: #E0E0E0; /* Gray background for the bar */
+    height: 20px; /* Height of the bar */
+    border-radius: 10px; /* Rounded corners */
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: #2F4F4F; /* Color for the filled part of the bar */
+    transition: width 0.5s; /* Add a smooth transition */
+}
+
+
+.bar-score {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(${investmentRating} * 10%);
+    font-weight: bold;
+    color: #2F4F4F;
+}
+
+.bar-markers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #2F4F4F;
+    width: 100%;
+}
+
+.marker {
+    flex: 1;
+    text-align: center;
+    transform: translateX(50%);
+}
+
+.bar-chart .bar {
+    background-color: #E0E0E0; /* Gray background for the bar */
+    height: 20px; /* Height of the bar */
+    border-radius: 10px; /* Rounded corners */
+    position: relative;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background-color: #2F4F4F; /* Color for the filled part of the bar */
+    transition: width 0.5s; /* Add a smooth transition */
+}
+
+/* Style for the score label */
+.bar-score {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: calc(${investmentRating} * 10%);
+    font-weight: bold;
+    color: #2F4F4F;
+}
+
+
+    </style>
 </head>
 <body>
-<button class="button-investmentRating">
-    <span class ="button-title">Rating:</span>
-    <span class="button-body" th:text="${investmentRating}"></span>
-</button>
-<button class="button-investmentRating">
-    <span class ="button-title">Explanation:</span>
-    <span class="button-body" th:text="${ratingAnalysis}"></span>
-</button>
+<div class="rating-container">
+    <div class="bar-chart">
+            <div class="bar-markers">
+                <div class="marker">1</div>
+                <div class="marker">2</div>
+                <div class="marker">3</div>
+                <div class="marker">4</div>
+                <div class="marker">5</div>
+                <div class="marker">6</div>
+                <div class="marker">7</div>
+                <div class="marker">8</div>
+                <div class="marker">9</div>
+                <div class="marker">10</div>
+            </div>
+            <div class="bar">
+                <div class="bar-fill" th:style="'width: ' + (${investmentRating} * 10) + '%;'"></div>
+            </div>
+        </div>
+    <div class="investment-rating">
+        <span class="rating-number" th:text="${investmentRating} + '/10'"></span>
+    </div>
+    <div class="rating-analysis">
+        <h2>Explanation:</h2>
+        <p th:text="${ratingAnalysis}"></p>
+    </div>
+</div>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'stats';"> &#8592; Back to Stats</button>
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+    <button class="button" onclick="window.location.href = 'learn-launchpad';">Learn More About BTL &#8594;</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
 </body>
 </html>
+

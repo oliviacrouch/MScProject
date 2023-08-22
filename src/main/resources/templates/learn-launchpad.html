@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learn</title>
+    <style>
+        body {
+            background-color: #2F4F4F;
+            color: #2F4F4F;
+            font-family: Arial, sans-serif;
+            paddingL 20px;
+        }
+
+        .book {
+            background-color: #FFFAF0;
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .page a {
+            color: #2F4F4F;
+            text-decoration: none;
+        }
+
+        .page a:hover {
+            text-decoration: underline;
+            }
+
+        .page {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .button {
+
+        align-items: center; /* Center the button contents vertically */
+        justify-content: center; /* Center the button contents horizontally */
+        background-color: transparent; /* Set default background color */
+        color: #FFFAF0; /* Set default text color */
+        border: 1px solid #FFFAF0;
+        border-radius: 10px;
+        padding: 10px 30px; /* Increase the horizontal padding to create more space */
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #FFFAF0; /* Change the background color on hover */
+        color: #2F4F4F; /* Change the text color on hover */
+    }
+
+    .button a {
+        flex-grow: 1; /* Allow the text to fill the available space */
+        text-decoration: none;
+        color: inherit; /* Use the default text color */
+    }
+    .help-button {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        background-color: transparent;
+        color: #FFFAF0;
+        border: 1px solid #FFFAF0;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover {
+        background-color: #FFFAF0;
+        color: #2F4F4F; /* Change the text color to white on hover */
+    }
+    .help-button a {
+        text-decoration: none; /* Remove the underline */
+        color: inherit; /* Use the default text color */
+    }
+    </style>
+</head>
+<body>
+<div class="book">
+    <h1>Select an option below to learn more about BTL investing.</h1>
+    <div class="page"><a href="guide">1. Step-by-step guide to BTL investing</a></div>
+    <div class="page"><a href="keywords">2. Keywords and concepts</a></div>
+    <div class="page"><a href="finance">3. Finance and Budgeting</a></div>
+    <div class="page"><a href="management">4. Property Management</a></div>
+    <div class="page"><a href="legal">5. Important Legal and Regulatory BTL Info</a></div>
+    <div class="page"><a href="risk">6. Risk Management Strategies</a></div>
+</div>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
+</body>
+</body>
+</html>

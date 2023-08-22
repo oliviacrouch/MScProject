@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <h1 style="color: #2F4F4F;">Keyword Flashcards</h1>
+    <title>Flashcards</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-family: Arial;
+            background: #FFFAF0;
+            color: #2F4F4F;
+        }
+        h1 {
+            color: #2F4F4F;
+            text-align: center; /* Center the heading */
+        }
+        .flashcard-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .flashcard {
+            width: 400px;
+            height: 200px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            perspective: 1000px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .front {
+            z-index: 2;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            padding: 10px;
+        }
+
+        .flashcard:hover .front {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard:hover .back {
+            transform: rotateY(0);
+        }
+
+        @media (max-width: 800px) {
+            .flashcard {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .button {
+        flex: 1; /* Distribute equal space to each button and make them equally spread out */
+        display: flex; /* Enable flexbox for the button contents */
+        align-items: center; /* Center the button contents vertically */
+        justify-content: center; /* Center the button contents horizontally */
+        background-color: transparent; /* Set default background color */
+        color: #2F4F4F; /* Set default text color */
+        border: 1px solid #2F4F4F;
+        border-radius: 10px;
+        padding: 10px 30px; /* Increase the horizontal padding to create more space */
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #2F4F4F; /* Change the background color on hover */
+        color: #FFFAF0; /* Change the text color on hover */
+    }
+
+    .button a {
+        flex-grow: 1; /* Allow the text to fill the available space */
+        text-decoration: none;
+        color: inherit; /* Use the default text color */
+    }
+    .help-button {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        background-color: transparent;
+        color: #2F4F4F;
+        border: 1px solid #2F4F4F;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover {
+        background-color: #2F4F4F;
+        color: #FFFAF0; /* Change the text color to white on hover */
+    }
+    .help-button a {
+        text-decoration: none; /* Remove the underline */
+        color: inherit; /* Use the default text color */
+    }
+    </style>
+</head>
+<body>
+<div class="flashcard-container">
+<div class="flashcard">
+    <div class="front">
+        <strong>Mortgage</strong>
+    </div>
+    <div class="back">
+        A loan used to finance the purchase of a property. When someone doesn’t have the money to pay for the entirety of a house upfront, they can apply for a mortgage from a financial institution such as a bank or mortgage lender, which they pay back over a set number of years through fixed payments with interest.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Down Payment</strong>
+    </div>
+    <div class="back">
+        An initial payment made when purchasing a house. It is a percentage of the total price that the investor pays upfront at the time of closing the deal on the property. This reduces the risk of the loan and ensures the buyer has an existing financial stake in the property.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Interest Rate</strong>
+    </div>
+    <div class="back">
+        An interest rate is a measure of the cost of borrowing money from a lender to finance the purchase of a property. It is expressed a percentage and represents the additional amount the borrower must pay on top of the original loan amount as compensation to the lender for providing the funds.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Cost For Comparison Interest Rate</strong>
+    </div>
+    <div class="back">
+        Cost for comparison is a standardised way of representing the total cost associated with a specific loan offer, taking into account the interest rate as well as additional fees or charges. This helps to compare different loan offers from various lenders more easily making comparisons of properties fair.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Loan Term</strong>
+    </div>
+    <div class="back">
+        Refers to the length of time over which the borrower agrees to repay the mortgage loan in full. It represents the duration of the mortgage agreement and determines the number of monthly payments the borrower must make to the lender. Typically expressed in years, this can span from anywhere between 15-40 years, with 25–30-year mortgages being the most common at present.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Expenses</strong>
+    </div>
+    <div class="back">
+        Expenses refer to the various costs associated with owning and maintaining a rental property for the purpose of generating rental income. Expenses can include: property taxes, insurance, maintenance and repairs, property management fees, and utilities and services. In PropWise, this has been predicted according to the property build date and quality, to give a safe estimate for an average which can be expected across the course of the property’s renting.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Gross Yield</strong>
+    </div>
+    <div class="back">
+        Gross yield is used to measure the potential return on a rental property before accounting for expenses. This is expressed as a percentage and represents the annual rental income generated by the property as a proportion of its total purchase price.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Net Yield</strong>
+    </div>
+    <div class="back">
+        This is used to measure the actual return on investment of a rental property after accounting for all operating expenses and costs associated with property ownership. It represents the net income generated by the property as a percentage of its total purchase price.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Vacancy Rate</strong>
+    </div>
+    <div class="back">
+        Indicates the percentage of time the property is unoccupied on an annual basis. It represents the amount of time the property will not be generated rental income for.
+    </div>
+</div>
+<div class="flashcard">
+    <div class="front">
+        <strong>Cash Flow (net)</strong>
+    </div>
+    <div class="back">
+        Represents the amount of cash generated from rental income after deducting all operating expenses and costs associated with managing and owning the property. This includes mortgage payments, property taxes and all other expenses. This is measured monthly – which can increase or decrease based on market statistics.
+    </div>
+</div>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'guide';"> &#8592; Guide</button>
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀 Launchpad</button>
+    <button class="button" onclick="window.location.href = 'finance';">Finances & Budgeting &#8594;</button>
+</div>
+</div>
+<button class="help-button"><a href="help">Help</a></button>
+</body>
+</html>

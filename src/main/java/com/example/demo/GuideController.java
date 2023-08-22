@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ErrorController {
+public class GuideController {
 
-    @GetMapping("/calc-error")
-    public String error() {
-        return "calc-error";
+    @GetMapping("/guide")
+    public String guide() {
+        return "guide";
     }
 }

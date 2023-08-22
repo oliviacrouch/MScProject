@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Information</title>
+  <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+        }
+        .index {
+
+       margin-top:100px;
+            background-color: #2F4F4F;
+            padding: 20px;
+            width: 200px;
+        }
+        .index a {
+            display: block;
+            margin-bottom: 10px;
+            color: #FFFAF0;
+            text-decoration: none;
+        }
+        .index a:hover {
+            text-decoration: underline;
+        }
+        .content {
+        margin-top: 100px;
+            flex: 1;
+            padding: 20px;
+            background-color: #FFFAF0;
+        }
+        .content h1 {
+            color: #2F4F4F;
+        }
+                  .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0! important;
+    }
+        .help-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+    .button a,
+    .help-button a {
+      text-decoration: none; /* Remove the underline */
+      color: #2F4F4F; /* Set link color to white */
+    }
+    </style>
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="index">
+    <a href="#" class="title-link" data-title="Gas Safety">Gas Safety</a>
+    <a href="#" class="title-link" data-title="Electrical Safety">Electrical Safety</a>
+    <a href="#" class="title-link" data-title="Energy Performance Certificates (EPC)">Energy Performance Certificates (EPC)</a>
+    <a href="#" class="title-link" data-title="Furniture & Regulations">Furniture & Regulations</a>
+    <a href="#" class="title-link" data-title="Tenancy Agreements">Tenancy Agreements</a>
+    <a href="#" class="title-link" data-title="Tenancy Deposit Schemes">Tenancy Deposit Schemes</a>
+    <a href="#" class="title-link" data-title="Tenant Referencing / Rent Guarantee Insurance">Tenant Referencing / Rent Guarantee Insurance</a>
+    <a href="#" class="title-link" data-title="Landlords Insurance">Landlords Insurance</a>
+  </div>
+  <div class="content">
+    <h1 id="main-title">Legal and Regulatory Information</h1>
+    <p id="main-content">Select a topic from the index to view more information.</p>
+  </div>
+</div>
+
+<script>
+        // Get references to the elements
+        const titleLinkElements = document.querySelectorAll('.title-link');
+        const mainTitleElement = document.getElementById('main-title');
+        const mainContentElement = document.getElementById('main-content');
+
+        // Event listener for each index link
+        titleLinkElements.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                // Update the main content when an index link is clicked
+                const title = link.dataset.title;
+                const content = getTitleContent(title);
+                mainTitleElement.textContent = title;
+                mainContentElement.textContent = content;
+            });
+        });
+
+        // Function to get content based on the clicked title
+        function getTitleContent(title) {
+            // You can customize this function to return different content based on the title
+            // For this example, we are returning dummy content
+
+            // Gas, Electrical and Interior (theme 1)
+            if (title === 'Gas Safety') {
+                return `As a landlord, you are legally responsible for the safety of your tenants in relation to gas safety, by ensuring all gas appliances are safe and maintained.
+                Arrange an annual gas safety inspection carried out by a Registered Gas Engineer, along with any required maintenance of the property pipework and appliances,
+                keep records of safety checks and provide tenants with a written report.`;
+            } else if (title === 'Electrical Safety') {
+                return `Commission an electrical safety check by a competent person before the tenancy starts.
+                Ensure the electrical installation and appliances are legal and safe.
+                Provide instruction books for safe appliance use.`;
+            } else if (title === 'Energy Performance Certificates (EPC)') {
+                return `Obtain an up-to-date EPC for your property before marketing it for rent.
+                Consider energy-efficient measures to improve your property's rating. From the 1st of April 2020, it was introduceed
+                that if your property does not have a valid EPC rating of 'E' or above, then it cannot be legally let. `;
+            } else if (title === 'Furniture & Regulations') {
+                return `Ensure all furnishings comply with 1993 amendments to the furniture and furnishings fire safety regulations.
+                Letting out a property is considered a business and therefore the furniture and furnishings come under these
+                regulations. Upholstered furniture must have a rectangular label attached which must be permanent andd
+                non-detachable. These regulations are enforced by local Trading Standards Officers.`;
+            }
+
+            // Tenant Contracts (theme 2)
+            if (title === 'Tenancy Agreements') {
+                return `The tenancy agreement is a contract between the landlord and the tenant, which can be written or verbal. Use an Assured Shorthold Tenancy (AST) for most private rentals.
+                This provides both the landlord and the tenant with rights, which must not infringe of either party's statutory rights.
+                A tenancy agreement can be made up of both express terms (in the tenancy agreement) and implied terms (given by law or custom) which do not need to be written in the tenancy agreement.
+                Provide a written tenancy agreement with essential details.`;
+            } else if (title === 'Tenancy Deposit Schemes') {
+                return `Deposits must be protected by landlords within 30 days of receiving the sum. Failure to protect the deposit gives the tenant the possibility to go court to seek a financial penalty against the landlords.
+                 Place tenants' deposits in a government-backed deposit protection scheme.
+                Provide tenants with details of how their deposit is protected.`;
+            } else if (title === 'Tenant Referencing / Rent Guarantee Insurance') {
+                return `Conduct tenant referencing to understand the tenant's financial history and reliability.
+                Consider rent guarantee insurance to protect against rent defaults.`;
+            }
+
+            // Landlords Insurance (theme 3)
+            if (title === 'Landlords Insurance') {
+                return `Invest in specialized landlords insurance to protect your property and income.
+                Consider coverage for buildings, contents, liability, and rent protection. Normal home insurance will not be valid if the
+                property is being rented out, even if to a friend or family member. Landlord insurance includes any building
+                you own and rent out and can also include the contents of the property depending on the contract.`;
+            }
+        }
+    </script>
+<div class="button-container">
+  <button class="button" onclick="window.location.href = 'management';">&#8592; Property Management</button>
+  <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+  <button class="button" onclick="window.location.href = 'risk';">Risk Management &#8594;</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
+</body>
+</html>
+
+

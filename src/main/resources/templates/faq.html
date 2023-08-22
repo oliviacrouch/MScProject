@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQs</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body {
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+            font-family: Arial, sans-serif;
+            margin: 100px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-container {
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid #2F4F4F;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .faq-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .category {
+            text-decoration: none;
+            color: #2F4F4F;
+        }
+
+        .question {
+            text-decoration: underline;
+            color: #2F4F4F;
+            margin: 0;
+        }
+
+        .answer {
+            display: none;
+        }
+
+        .expand-btn {
+            cursor: pointer;
+            color: #2F4F4F;
+            text-decoration: underline;
+        }
+
+        /* Remove bullet points from the list */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Style the "Submit a New Question" link */
+        .submit-link {
+            color: #2F4F4F;
+            font-weight: bold;
+            text-decoration: none;
+
+        }
+
+        .submit-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Position the "Expand" button to the right */
+        .expand-btn-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+      .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+        .admin-login {
+      position: fixed;
+      top: 35px;
+      right: 200px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .admin-login:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+        .help-button {
+      margin: 25px;
+      position: fixed;
+      top: 10px;
+      left: 100px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Section to display already asked FAQs -->
+    <div class="header">
+        <h1>Frequently Asked Questions</h1>
+        <!-- Link to navigate to the "Submit FAQ" page -->
+        <a href="form" class="submit-link">Submit a New Question</a>
+    </div>
+    <ul>
+        <li th:each="faq : ${answeredFAQs}">
+            <div class="faq-container">
+                <div class="faq-item">
+                    <!-- Display the category of each FAQ next to the question -->
+                    <h3>
+                        <span class="category" th:text="${faq.category}"></span> -
+                        <span class="question" th:text="${faq.question}"></span>
+                    </h3>
+                    <!-- Expand/Collapse button -->
+                    <div class="expand-btn-container">
+                        <span class="expand-btn">Expand</span>
+                    </div>
+                </div>
+                <!-- Answer initially hidden; shown when clicking expand -->
+                <p class="answer" th:text="${faq.answer}"></p>
+            </div>
+        </li>
+    </ul>
+</div>
+<script>
+    $(document).ready(function () {
+        // Click event for the expand/collapse button
+        $('.expand-btn').click(function () {
+            var answer = $(this).parent().parent().parent().find('.answer');
+            answer.slideToggle();
+
+            // Toggle the "Expand" and "Collapse" text
+            $(this).text(function (_, text) {
+                return text === 'Expand' ? 'Collapse' : 'Expand';
+            });
+        });
+    });
+</script>
+<button class="admin-login" onclick="window.location.href = 'admin-login';">Admin Login</button>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
+</body>
+</html>
+
+
+
+
+
+
+

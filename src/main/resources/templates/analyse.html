@@ -5,42 +5,15 @@
     <title>Property Details</title>
     <style>
         body {
-            background-color: black;
-            font-family: sans-serif;
-            color: white;
+            background-color: #FFFAF0;
+            font-family: Arial;
+            color: #2F4F4F;
         }
 
         .container {
             width: 80%;
             margin: 0 auto;
         }
-        .nav-container {
-  background-color: white;
-}
-
-nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-nav li {
-  display: inline-block;
-  padding: 10px;
-}
-
-nav a {
-  text-decoration: none;
-  color: white;
-  padding: 10px;
-  border: 2px dotted;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-nav a:hover {
-  background-color: #e0e0e0;
-}
 
         form {
             margin-top: 50px;
@@ -61,32 +34,65 @@ nav a:hover {
 
         input[type="submit"], .button
              {
-            background-color: #ffffff;
-            color: #000000
-            border: none;
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+            border: 1px solid #2F4F4F;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border-radius: 5px;
         }
 
-        .button-container {
-            align-items: center;
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+       .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
 
-        .button-container .button {
-            adding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            color: black; /* Set the text color to black */
-            background-color: white; /* Set the background color to white */
-            border: none;
-        }
+    .button {
+        flex: 1; /* Distribute equal space to each button and make them equally spread out */
+        display: flex; /* Enable flexbox for the button contents */
+        align-items: center; /* Center the button contents vertically */
+        justify-content: center; /* Center the button contents horizontally */
+        background-color: transparent; /* Set default background color */
+        color: #2F4F4F; /* Set default text color */
+        border: 1px solid #2F4F4F;
+        border-radius: 10px;
+        padding: 10px 30px; /* Increase the horizontal padding to create more space */
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
 
+    .button:hover {
+        background-color: #2F4F4F; /* Change the background color on hover */
+        color: #FFFAF0; /* Change the text color on hover */
+    }
+
+    .button a {
+        flex-grow: 1; /* Allow the text to fill the available space */
+        text-decoration: none;
+        color: inherit; /* Use the default text color */
+    }
+    .help-button {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        background-color: transparent;
+        color: #2F4F4F;
+        border: 1px solid #2F4F4F;
+        border-radius: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover {
+        background-color: #2F4F4F;
+        color: #FFFAF0; /* Change the text color to white on hover */
+    }
+    .help-button a {
+        text-decoration: none; /* Remove the underline */
+        color: inherit; /* Use the default text color */
+    }
         .button-container .button:last-child {
             margin-left: 10px;
         }
@@ -95,10 +101,6 @@ nav a:hover {
         .button-container .button[type="submit"] {
             margin-left: auto;
             }
-
-        .button-container .button:hover {
-            background-color: #e0e0e0;
-        }
 
         .radio-container {
     display: flex;
@@ -115,11 +117,6 @@ nav a:hover {
     </style>
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a onclick="goToHelp();">Help</a></li>
-    </ul>
-</nav>
 <div class="container">
     <h1>Input Property Details for Instant Analysis</h1>
     <form action="/process-form" method="post">
@@ -217,9 +214,6 @@ nav a:hover {
         </div>
     </form>
 </div>
-<div class="button-container">
-    <button class="button" onclick="goToLaunchpad();">Back</button>
-</div>
 <script>
             function goToLaunchpad() {
                 window.location.href = 'launchpad';
@@ -229,6 +223,12 @@ nav a:hover {
                 }
 
 </script>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'launchpad';">&#8592; Back</button>
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀 Launchpad</button>
+</div>
+</div>
+<button class="help-button" onclick="window.location.href = 'launchpad';">Help</button>
 </body>
 </html>
 

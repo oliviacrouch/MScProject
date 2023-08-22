@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -144,6 +145,7 @@ public class HouseCalculationController {
             House savedHouse = houseCalculationService.saveHouse(house);
             // carry forward these to the next HTTP page so an analysis of them can be
             // performed to better inform the user's understanding of the investment rating
+            httpSession.setAttribute("grossYield", grossYield);
             httpSession.setAttribute("investmentRating", investmentRating);
             httpSession.setAttribute("cashFlow", cashFlow);
             httpSession.setAttribute("purchasePrice", savedHouse.getPurchasePrice());
@@ -153,9 +155,15 @@ public class HouseCalculationController {
         }
         catch (IOException e) {
             e.printStackTrace();
-            return "error";
+            return "calc-error";
         }
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String illegalArgumentException(IllegalArgumentException e) {
+        return "calc-error";
+    }
+
 
     @GetMapping("/process-score")
     public String showResults(Model model, HttpSession httpSession) {
@@ -175,6 +183,13 @@ public class HouseCalculationController {
         // then can display this in the HTML using this reference? (I think):
         model.addAttribute("ratingAnalysis", ratingAnalysis);
         return "investmentRating";
+    }
+
+    @GetMapping("/stats")
+    public String stats(HttpSession httpSession, Model model) {
+        double grossYield = (Double) httpSession.getAttribute("grossYield");
+        model.addAttribute("grossYield", grossYield);
+        return "stats";
     }
 }
 

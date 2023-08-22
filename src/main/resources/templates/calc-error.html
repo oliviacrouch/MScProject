@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+    <style>
+        body {
+            background-color: #FFFAF0;
+            color: #2F4F4F;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 100px;
+            flex-direction: column;
+        }
+
+        .error-box {
+            border: 2px solid #2F4F4F;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .error-box p {
+            color: #2F4F4F;
+        }
+
+        .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+        .help-button {
+      margin: 25px;
+      position: fixed;
+      top: 10px;
+      left: 100px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+    </style>
+</head>
+<body>
+<div class="error-box">
+    <h1>Error!</h1>
+    <p>There was an error processing your input. It is likely that either:</p>
+    <ol>
+        <li>The area and specifications that you input returned too little data to return a valuation. The model works by using comparables, which are properties with the same specification in the same area. So, if there are no comparables available, then the valuation cannot be performed.</li>
+        <li>There is incorrect syntax in your form input - you may have mistyped your postcode which cannot be recognised by the API call.</li>
+    </ol>
+    <p>Navigate back to the input page using the 'back' button below to check your input or possibly search in a different area.</p>
+</div>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'analyse';"> &#8592; Back to Input</button>
+    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+    <button class="help-button" onclick="window.location.href = 'help';">Help</button>
+</div>
+</body>
+</html>

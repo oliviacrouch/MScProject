@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ErrorController {
+public class LearnController {
 
-    @GetMapping("/calc-error")
-    public String error() {
-        return "calc-error";
+    @GetMapping("/learn-launchpad")
+    public String learnLaunchpad() {
+        return "learn-launchpad";
     }
 }

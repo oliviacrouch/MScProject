@@ -4,10 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ErrorController {
-
-    @GetMapping("/calc-error")
-    public String error() {
-        return "calc-error";
+public class LegalPageController {
+    @GetMapping("/legal")
+    public String legal() {
+        return "legal";
     }
 }

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Risk Management Strategies</title>
+  <style>
+    body {
+  font-family: Arial;
+  background-color: #FFFAF0;
+  color: #2F4F4F;
+  }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .box {
+      width: 700px;
+      text-align: center;
+      padding: 10px;
+      border: 2px solid #2F4F4F;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #FFFAF0;
+    }
+
+    .folder-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #2F4F4F;
+    }
+
+    .content {
+      width: 700px;
+      padding: 10px;
+      border: 2px solid #2F4F4F;
+      border-radius: 10px;
+      display: none;
+      background-color: #FFFAF0;
+    }
+
+    .content.show {
+      display: block;
+    }
+
+    h1 {
+      color: #2F4F4F;
+    }
+            .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0! important;
+    }
+        .help-button {
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .help-button:hover,
+     .button:hover a,
+      .help-button:hover a {
+      background-color: #2F4F4F;
+      color: #FFFAF0 !important;
+    }
+    .button a,
+    .help-button a {
+      text-decoration: none; /* Remove the underline */
+      color: #2F4F4F; /* Set link color to white */
+    }
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Risk Management Strategies</h1>
+  <div class="box" onclick="toggleContent(1)">
+    <div class="folder-title">Business Risk Management Strategies</div>
+  </div>
+  <div class="content" id="content1">
+    <ol>
+      <li>Diversification of Property Portfolio: Owning properties in different locations and property types can help spread the risk. A diverse portfolio can mitigate the impact of a downturn in a market.</li>
+      <li>Thorough Tenant Screening: Carefully screen potential tenants by conducting background checks, verifying employment, and checking references. Selecting reliable tenants can reduce the risk of rent defaults and property damage.</li>
+      <li>Maintain Adequate Insurance: Ensure you have appropriate landlord insurance coverage that includes property damage, liability protection, and rent loss coverage in case of unexpected events like natural disasters or tenant defaults.</li>
+      <li>Emergency Fund: Maintain an emergency fund to cover unexpected repairs or vacancies. Having liquid funds readily available can help avoid financial strain during challenging times.</li>
+      <li>Regular Property Inspections: Conduct regular inspections to identify potential maintenance issues early and address them promptly. Timely maintenance can prevent costly repairs down the line.</li>
+      <li>Lease Agreements and Clauses: Use well-drafted lease agreements with clear terms and conditions that protect the landlord's interests and provide legal recourse if necessary.</li>
+      <li>Professional Property Management: Consider hiring a professional property management company to handle day-to-day operations, tenant relations, and property maintenance. This can relieve the burden of managing properties and ensure efficient operations.</li>
+      <li>Renewal Strategies: Encourage lease renewals with existing tenants to reduce vacancy periods and maintain stable rental income.</li>
+      <li>Understanding Tax Implications: Stay informed about tax laws related to rental income and property investment. Knowledge of tax implications can help optimize your financial position.</li>
+    </ol>
+  </div>
+  <div class="box" onclick="toggleContent(2)">
+    <div class="folder-title">Market Risk Management Strategies</div>
+  </div>
+  <div class="content" id="content2">
+    <ol>
+      <li>Stay Compliant with Regulations: Keep up-to-date with local, state, and national regulations related to rental properties. Compliance with laws and regulations reduces legal risks and potential penalties.</li>
+      <li>Rent Price Analysis: Regularly assess the rental market and adjust rental prices to stay competitive and maximize rental income.</li>
+      <li>Stay Informed about Market Trends: Keep yourself informed about the local property market trends, rental demand, and economic conditions. Understanding the market can help you make informed decisions about your investments.</li>
+      <li>Monitor Economic Indicators: Keep an eye on economic indicators, interest rates, and inflation, as they can impact the property market and rental demand.</li>
+      <li>Long-term Investment Perspective: View buy-to-let properties as long-term investments. Short-term fluctuations in property prices and rental demand may occur, but a long-term perspective can smooth out potential volatility.</li>
+    </ol>
+  </div>
+</div>
+
+<script>
+    function toggleContent(index) {
+      const content = document.getElementById(`content${index}`);
+      content.classList.toggle('show');
+    }
+  </script>
+<div class="button-container">
+  <button class="button" onclick="window.location.href = 'legal';"> &#8592; Legal Info</button>
+  <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+  <button class="button" onclick="window.location.href = 'analyse';">Start Analysis &#8594;</button>
+</div>
+<button class="help-button" onclick="window.location.href = 'help';">Help</button>
+</body>
+</html>
