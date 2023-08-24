@@ -3,6 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQ Database</title>
+    <style>
+        body {
+            background-color: #FFFAF0;
+            font-family: Arial;
+            color: #2F4F4F;
+        }
+                          .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+    .button {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .button:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0! important;
+    }
+
+    .answer,
+    .delete {
+      background-color: transparent;
+      color: #2F4F4F;
+      border: 1px solid #2F4F4F;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .answer:hover,
+     .delete:hover {
+      background-color: #2F4F4F;
+      color: #FFFAF0! important;
+    }
+    </style>
 </head>
 <body>
 <h1>FAQ Database</h1>
@@ -22,7 +64,7 @@
                 <form action="/answer-faq" method="post">
                     <input type="hidden" name="id" th:value="${faq.id}">
                     <input type="text" name="newAnswer">
-                    <button type="submit">Answer</button>
+                    <button type="submit" class="answer">Answer</button>
                 </form>
             </span>
         </td>
@@ -32,15 +74,18 @@
             <form action="update-faq" method="post">
                 <input type="hidden" name="id" th:value="${faq.id}">
                 <input type="text" name="answer">
-                <button type="submit">Answer</button>
+                <button type="submit" class="answer">Answer</button>
             </form>
             <form action="/delete-faq" method="post">
                 <input type="hidden" name="id" th:value="${faq.id}">
-                <button type="submit">Delete</button>
+                <button type="submit" class="delete">Delete</button>
             </form>
         </td>
     </tr>
 </table>
+<div class="button-container">
+    <button class="button" onclick="window.location.href = 'faq';">&#8592; Back / Logout</button>
+</div>
 </body>
 </html>
 
