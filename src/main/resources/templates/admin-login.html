@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <h1 class="propwise" th:style="font-size: 70px; text-decoration: underline; text-align: center; ">PropWise</h1>
     <style>
     body {
     background: #FFFAF0;
@@ -87,13 +88,18 @@
             width: 50%;
             margin: 0 auto;
         }
-
+   .propwise {
+    font-size: 70px;
+    text-decoration: underline;
+    text-align: center;
+    }
 
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Admin Login to FAQ Database</h1>
+<!--    <h1 class="propwise">PropWise</h1>-->
+    <h2>Admin Login to FAQ Database</h2>
     <form id="login-form" action="/login" method="post">
 
         <label for="username">Username:</label>
@@ -140,7 +146,7 @@ document.getElementById("login-form").addEventListener("submit", function(event)
 <div class="button-container">
     <button class="button" onclick="window.location.href = 'faq';">  &#8592; Back</button>
     <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
-<!--    <button class="button" type="submit">Login</button>-->
+    <!--    <button class="button" type="submit">Login</button>-->
 </div>
 <button class="help-button">Help</button>
 </body>

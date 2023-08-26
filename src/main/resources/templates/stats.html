@@ -12,8 +12,8 @@
         }
 
         .white-box {
-  margin-bottom: 20px;
-  padding: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
   text-align: center;
 }
 
@@ -48,7 +48,7 @@
     flex-wrap: wrap;
     margin-top: 50px;
     justify-content: space-between;
-    gap: 20px; /* Add spacing between white-box elements */
+    gap: 7px; /* Add spacing between white-box elements */
 }
 
 .white-box {
@@ -59,6 +59,8 @@
     background-color: transparent;
     color: #2F4F4F;
     min-width: 150px;
+    max-width: 400px;
+    max-height: 300px;
     margin-top: 10px;
     margin-bottom: 10px;
     height: 300px;
@@ -100,13 +102,10 @@
       color: #FFFAF0! important;
     }
         .help-button {
-      margin-top: 150px;
-      left: 30px;
       background-color: transparent;
       color: #2F4F4F;
       border: 1px solid #2F4F4F;
       border-radius: 10px;
-      padding: 10px 20px;
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -196,10 +195,10 @@ colour: #FFFAF0;
         <td>Loan Term</td>
         <td th:text="${house.loanTerm}"></span></td>
     </tr>
-    <tr>
-        <td>Income</td>
-        <td th:text="${house.income}"></span></td>
-    </tr>
+<!--    <tr>-->
+<!--        <td>Income</td>-->
+<!--        <td th:text="${house.income}"></span></td>-->
+<!--    </tr>-->
     <tr>
         <td>Postcode</td>
         <td th:text="${house.postcode}"></span></td>
@@ -242,11 +241,6 @@ colour: #FFFAF0;
             th:data-recommended-rent="${house.rentRecommend}"
             th:data-mortgage-monthly="${house.monthlyMortgagePayment}">
         <span class ="button-title">Monthly Expenses vs Rent:</span>
-<!--        <span class="button-body">-->
-<!--        Expenses: <span th:text="${'£' + house.expenses}"></span><br>-->
-<!--        Mortgage: <span th:text="${'£' + house.monthlyMortgagePayment}"></span><br>-->
-<!--        Rent: <span th:text="${'£' + house.rentRecommend}"></span><br>-->
-<!--        </span>-->
         <canvas class="expensesChart" style="height:100%;width:100%"></canvas>
 
     </button>
@@ -255,8 +249,6 @@ colour: #FFFAF0;
     th:data-daysOnMarket="${house.daysOnMarket}"
     th:data-ukAv="223">
         <span class ="button-title">Days on market</span>
-<!--        This property: <span class="button-body" th:text="${house.daysOnMarket}"></span>-->
-<!--        UK average: 223-->
         <canvas class="daysOnMarketChart" style="height:100%;width:100%"></canvas>
     </button>
 
@@ -269,24 +261,18 @@ colour: #FFFAF0;
             th:data-gross-yield="${house.grossYield}"
             th:data-net-yield="${house.netYield}">
         <span class="button-title">Yield:</span>
-<!--        <span class="button-body">-->
-<!--        Gross: <span th:text="${house.grossYield + '%'}"></span><br>-->
-<!--        Net: <span th:text="${house.netYield + '%'}"></span>-->
-<!--    </span>-->
         <canvas class="yieldChart" style="height:100%;width:100%;max-width:700px"></canvas>
     </button>
 
     <button class="white-box button-vacancyRate"
     th:data-vacancy="${house.vacancyRate}">
         <span class ="button-title">Vacancy Rate:</span>
-<!--        <span class="button-body" th:text="${'Around ' + house.vacancyRate}"></span>-->
         <canvas id="vacancyChart" style="height:100%;width:100%;"></canvas>
     </button>
 
     <button class="white-box button-cashFlow"
     th:data-cashFlow="${house.cashFlow}">
         <span class ="button-title">Net cash flow per month:</span>
-<!--        <span class="button-body" th:text="${'£' + house.cashFlow}"></span>-->
         <canvas class="cashFlowChart" style="height:100%;width:100%;"></canvas>
     </button>
 </div>

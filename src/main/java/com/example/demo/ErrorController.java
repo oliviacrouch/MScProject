@@ -10,4 +10,6 @@ public class ErrorController {
     public String error() {
         return "calc-error";
     }
+
+
 }

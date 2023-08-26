@@ -18,7 +18,8 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 44px;
+  font-size: 70px;
+  text-decoration: underline;
   margin-top: 50px;
   color: #2F4F4F;
 }
@@ -56,8 +57,7 @@ h3 {
   overflow: hidden;
   cursor: pointer;
   font-weight: 400;
-  font-size: 18px;
-  border: 2px solid;
+  font-size: 28px;
   font-family: inherit;
   color: var(--color);
   z-index: 5;
@@ -78,23 +78,29 @@ h3 {
     align-items: center;
     height: 200px;
     justify-content: center;
-    background-color: transparent; /* Use 'transparent' instead of '#transparent' */
+    background-color: #FFFAF0; /* Use 'transparent' instead of '#transparent' */
     color: #2F4F4F;
-    border: 1px solid #2F4F4F;
+    font-weight: bold;
+    font-size: 20px;
+    border: transparent;
     border-radius: 10px;
-    padding: 10px 30px;
+    padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
 }
 
 .button:hover {
     background-color: #2F4F4F; /* Remove the space before !important */
     color: #FFFAF0;
+
 }
 
 .button a {
     flex-grow: 1;
     text-decoration: none;
+    font-weight: bold;
     color: inherit;
 }
 
@@ -119,17 +125,28 @@ h3 {
         color: inherit; /* Use the default text color */
     }
 
-
+.icons {
+      font-size: 60px; /* Adjust the font size of the house icon */
+  }
 </style>
 <body>
-<h1>Welcome to PropWise</h1>
+<h1>PropWise</h1>
 <h3 class="description">The property investment tool designed to introduce new investors to intelligent and responsible buy-to-let investment decisions.</h3>
 
 <div class="button-container">
-    <button class="button" onclick="window.location.href = 'learn-launchpad';">Learn More About BTL Investing</button>
-  <button class="button" onclick="window.location.href = 'analyse';">Analyse Your Investment</button>
-  <button class="button" onclick="window.location.href = 'faq';">FAQs</button>
-  </div>
+    <button class="button" onclick="window.location.href = 'learn-launchpad';">
+        <span class="icons">&#128218;</span>
+        Learn More About BTL Investing
+    </button>
+    <button class="button" onclick="window.location.href = 'analyse';">
+        <span class="icons">&#127968;</span>
+        Analyse Your Investment
+    </button>
+    <button class="button" onclick="window.location.href = 'faq';">
+        <span class="icons">&#128214;</span>
+        FAQs
+    </button>
+</div>
 <button class="help-button" onclick="window.location.href = 'help';">Help</button>
 </body>
 </html>

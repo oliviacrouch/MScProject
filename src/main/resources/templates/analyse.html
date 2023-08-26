@@ -113,12 +113,17 @@
     margin-right: 17px; /* Add some space between the radio buttons and text */
     margin-left: 10px;
 }
-
+ .propwise {
+    font-size: 70px;
+    text-decoration: underline;
+    text-align: center;
+    }
     </style>
 </head>
 <body>
+<h1 class="propwise">PropWise</h1>
 <div class="container">
-    <h1>Input Property Details for Instant Analysis</h1>
+    <h2>Input Property Details for Instant Analysis</h2>
     <form action="/process-form" method="post">
         <label for="purchasePrice">Purchase Price:</label>
         <input type="number" id="purchasePrice" name="purchasePrice">
@@ -127,7 +132,7 @@
         <input type="number" id="downPayment" name="downPayment">
 
         <label for="mortgageAmount">Mortgage Amount:</label>
-        <input type="number" id="mortgageAmount" name="mortgageAmount">
+        <input type="number" id="mortgageAmount" name="mortgageAmount" >
 
         <label for="interestRate">Mortgage Interest Rate (cost for comparison):</label>
         <input type="number" step="0.01" id="interestRate" name="interestRate">
@@ -135,11 +140,11 @@
         <label for="loanTerm">Mortgage Loan Term:</label>
         <input type="number" id="loanTerm" name="loanTerm">
 
-        <label for="income">Your annual income (excluding prospective rent):</label>
-        <input type="number" id="income" name="income">
+<!--        <label for="income">Your annual income (excluding prospective rent):</label>-->
+<!--        <input type="number" id="income" name="income">-->
 
         <label for="postcode">The Property Postcode:</label>
-        <input type="text" id="postcode" name="postcode">
+        <input type="text" id="postcode" name="postcode" oninput="formatPostcode(this)">
 
         <label for="internalArea">Internal Area of the Property (sqft):</label>
         <input type="number" id="internalArea" name="internalArea">
@@ -215,14 +220,13 @@
     </form>
 </div>
 <script>
-            function goToLaunchpad() {
-                window.location.href = 'launchpad';
-              }
-            function goToHelp() {
-                window.location.href = 'help';
-                }
-
+function formatPostcode(inputElement) {
+    // remove spaces and convert to uppercase
+    const formattedValue = inputElement.value.replace(/\s+/g, '').toUpperCase();
+    inputElement.value = formattedValue;
+}
 </script>
+
 <div class="button-container">
     <button class="button" onclick="window.location.href = 'launchpad';">&#8592; Back</button>
     <button class="button" onclick="window.location.href = 'launchpad';">🚀 Launchpad</button>

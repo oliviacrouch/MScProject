@@ -65,17 +65,23 @@
       background-color: #2F4F4F;
       color: #FFFAF0 !important;
     }
+     .propwise {
+    font-size: 70px;
+    text-decoration: underline;
+    text-align: center;
+    }
     </style>
 </head>
 <body>
+<h1 class="propwise">PropWise</h1>
 <div class="error-box">
     <h1>Error!</h1>
     <p>There was an error processing your input. It is likely that either:</p>
     <ol>
         <li>The area and specifications that you input returned too little data to return a valuation. The model works by using comparables, which are properties with the same specification in the same area. So, if there are no comparables available, then the valuation cannot be performed.</li>
-        <li>There is incorrect syntax in your form input - you may have mistyped your postcode which cannot be recognised by the API call.</li>
+        <li>You may have missed a section of the form. Go back and ensure you fill in every section for the API to be able to process your request.</li>
     </ol>
-    <p>Navigate back to the input page using the 'back' button below to check your input or possibly search in a different area.</p>
+    <p>Navigate back to the input page using the 'back' button below to retype your input or possibly search in a different area.</p>
 </div>
 <div class="button-container">
     <button class="button" onclick="window.location.href = 'analyse';"> &#8592; Back to Input</button>
