@@ -25,9 +25,9 @@ public class House {
     @NotEmpty
     @Column(name = "loanTerm")
     private String loanTerm;
-    @NotEmpty
-    @Column(name = "income")
-    private String income;
+//    @NotEmpty
+//    @Column(name = "income")
+//    private String income;
     @NotEmpty
     @Column(name="internalArea")
     private String internalArea;
@@ -123,13 +123,13 @@ public class House {
         this.loanTerm = loanTerm;
     }
 
-    public String getIncome() {
-        return income;
-    }
-
-    public void setIncome(String income) {
-        this.income = income;
-    }
+//    public String getIncome() {
+//        return income;
+//    }
+//
+//    public void setIncome(String income) {
+//        this.income = income;
+//    }
 
     public String getPostcode() {
         return postcode;

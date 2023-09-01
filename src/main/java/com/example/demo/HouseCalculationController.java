@@ -35,7 +35,7 @@ public class HouseCalculationController {
         System.out.println(house.getMortgageAmount());
         System.out.println(house.getInterestRate());
         System.out.println(house.getLoanTerm());
-        System.out.println(house.getIncome());
+//        System.out.println(house.getIncome());
         System.out.println(house.getPostcode());
         System.out.println(house.getBedrooms());
         System.out.println(house.getPropertyType());
@@ -180,7 +180,7 @@ public class HouseCalculationController {
         String ratingAnalysis =houseCalculationService.produceRatingAnalysis(investmentRating, cashFlow, vacancyRate,
                 purchasePrice);
 
-        // then can display this in the HTML using this reference? (I think):
+        // then can display this in the HTML using this reference?
         model.addAttribute("ratingAnalysis", ratingAnalysis);
         return "investmentRating";
     }

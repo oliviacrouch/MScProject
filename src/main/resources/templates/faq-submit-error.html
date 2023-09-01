@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Error Page</title>
-    <style>
+  <meta charset="UTF-8">
+  <title>Error Page</title>
+  <style>
         body {
             background-color: #FFFAF0;
             color: #2F4F4F;
@@ -75,18 +75,16 @@
 <body>
 <h1 class="propwise">PropWise</h1>
 <div class="error-box">
-    <h1>Error!</h1>
-    <p>There was an error processing your input. It is likely that either:</p>
-    <ol>
-        <li>The area and specifications that you input returned too little data to return a valuation. The model works by using comparables, which are properties with the same specification in the same area. So, if there are no comparables available, then the valuation cannot be performed.</li>
-        <li>You may have missed a section of the form. Go back and ensure you fill in every section for the API to be able to process your request.</li>
-    </ol>
-    <p>Navigate back to the input page using the 'back' button below to retype your input or possibly search in a different area.</p>
+  <h1>Error!</h1>
+  <p>There was an error processing your question. It is likely that:</p>
+  <ol>
+    <li>You didn't input a full question. The form can only handle full questions. Go back and ensure you fill in a full question or exit the question submission page.</li>
+  </ol>
 </div>
 <div class="button-container">
-    <button class="button" onclick="window.location.href = 'analyse';"> &#8592; Back to Input</button>
-    <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
-    <button class="help-button" onclick="window.location.href = 'help';">Help</button>
+  <button class="button" onclick="window.location.href = 'form';"> &#8592; Back to Input</button>
+  <button class="button" onclick="window.location.href = 'launchpad';">🚀Launchpad</button>
+  <button class="help-button" onclick="window.location.href = 'help';">Help</button>
 </div>
 </body>
 </html>

@@ -228,7 +228,7 @@ public class HouseCalculationServiceImpl implements HouseCalculationService {
     public String calcNetCashFlow(double monthlyRent, double monthlyMortgagePayment,
                                String vacancyRate, double expenses) {
         DecimalFormat df = new DecimalFormat("0.00");
-        // calc gross rental income
+        // calc yearly gross rental income
         double grossRentalIncome = monthlyRent * 12;
         // handle vacancy rate string
         String vacancyRate1 = vacancyRate.replaceAll("%", "");
