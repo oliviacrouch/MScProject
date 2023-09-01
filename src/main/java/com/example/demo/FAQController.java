@@ -53,8 +53,8 @@ public class FAQController {
         List<FAQ> answeredFAQs = faqService.getAnsweredFAQs();
         model.addAttribute("answeredFAQs", answeredFAQs);
         Map<FAQ.CategoryType, List<FAQ>> faqsByCategory = faqService.sortFAQsByCategory();
-        model.addAttribute("faqsByCategory", faqsByCategory);
-        model.addAttribute("selectedCategory", category);
+//        model.addAttribute("faqsByCategory", faqsByCategory);
+//        model.addAttribute("selectedCategory", category);
         return "faq";
     }
 
